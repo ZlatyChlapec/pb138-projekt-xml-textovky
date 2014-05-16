@@ -33,14 +33,15 @@ public class GUI extends JFrame {
         topMenu = new JMenu();
         topMenuExitProgram = new JMenuItem();
 
-        setTitle("Warehouse Manager");
+        setTitle("Best text game ever.");
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent we) {
-                int result = JOptionPane.showConfirmDialog(mainFrame, "Are you sure? All your progress will be lost.", "Exit confrimation", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(mainFrame, "Are you sure? All your progress will be lost.",
+                        "Exit confrimation", JOptionPane.YES_NO_OPTION);
                 if (result == 0) {
                     System.exit(0);
                 }
@@ -54,13 +55,21 @@ public class GUI extends JFrame {
         firstOptionButton.setFont(new Font("Century", 0, 11));
         firstOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         firstOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
-        firstOptionButton.setText("<html>This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar</html>");
+        firstOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
+                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
+                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
+                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
+                "programming. As such, this paper will focus on the hierar</html>");
         firstOptionButton.setMargin(new Insets(2, 2, 2, 2));
         firstOptionButton.setVerticalAlignment(SwingConstants.TOP);
         firstOptionButton.setVerticalTextPosition(SwingConstants.TOP);
 
         secondOptionButton.setFont(new Font("Century", 0, 11));
-        secondOptionButton.setText("<html>This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar</html>");
+        secondOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
+                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
+                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
+                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
+                "programming. As such, this paper will focus on the hierar</html>");
         secondOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         secondOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
         secondOptionButton.setIconTextGap(2);
@@ -71,7 +80,11 @@ public class GUI extends JFrame {
         thirdOptionButton.setFont(new Font("Century", 0, 11));
         thirdOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         thirdOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
-        thirdOptionButton.setText("<html>This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar</html>");
+        thirdOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
+                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
+                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
+                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
+                "programming. As such, this paper will focus on the hierar</html>");
         thirdOptionButton.setMargin(new Insets(2, 2, 2, 2));
         thirdOptionButton.setVerticalAlignment(SwingConstants.TOP);
         thirdOptionButton.setVerticalTextPosition(SwingConstants.TOP);
@@ -79,7 +92,11 @@ public class GUI extends JFrame {
         fourthOptionButton.setFont(new Font("Century", 0, 11));
         fourthOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         fourthOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
-        fourthOptionButton.setText("<html>This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar This article is meant for the individual who has little or no experience in Java GUI programming. As such, this paper will focus on the hierar</html>");
+        fourthOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
+                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
+                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
+                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
+                "programming. As such, this paper will focus on the hierar</html>");
         fourthOptionButton.setMargin(new Insets(2, 2, 2, 2));
         fourthOptionButton.setVerticalAlignment(SwingConstants.TOP);
         fourthOptionButton.setVerticalTextPosition(SwingConstants.TOP);
