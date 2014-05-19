@@ -7,7 +7,8 @@ and open the template in the editor.
 
 <game name="test" starting_scene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="textGameXmlSchema.xsd">
-    <scene name="first scene" id="1">
+    <scene id="1">
+        <name>First scene</name>
         <description>
             This is first scene of the testing XML game.
         </description>
@@ -23,7 +24,8 @@ and open the template in the editor.
             </choice>
         </choices>
     </scene>
-    <scene name="second scene" id="2">
+    <scene id="2">
+        <name>Second scene</name>
         <description>
             This is second scene of the testing XML game.
         </description>
@@ -39,7 +41,8 @@ and open the template in the editor.
             </choice>
         </choices>
     </scene>
-    <scene name="third scene" id="3">
+    <scene id="3">
+        <name>Third scene</name>
         <description>
             This is third scene of the testing XML game.
         </description>
@@ -55,7 +58,8 @@ and open the template in the editor.
             </choice>
         </choices>
     </scene>
-    <scene name="fourth scene" id="4">
+    <scene id="4">
+        <name>Fourth scene</name>
         <description>
             This is fourth scene of the testing XML game.
         </description>
