@@ -24,6 +24,8 @@ public class GUI extends JFrame {
 
     private void initComponents() {
 
+
+        sceneNameLabel = new JLabel();
         actualSceneLabel = new JLabel();
         firstOptionButton = new JButton();
         secondOptionButton = new JButton();
@@ -101,6 +103,9 @@ public class GUI extends JFrame {
         fourthOptionButton.setVerticalAlignment(SwingConstants.TOP);
         fourthOptionButton.setVerticalTextPosition(SwingConstants.TOP);
 
+        sceneNameLabel.setFont(new Font("Century", 0, 24));
+        sceneNameLabel.setText("Name of the scene");
+
         topMenu.setText("File");
         topMenu.setFont(new Font("Century", 0, 12));
 
@@ -125,20 +130,23 @@ public class GUI extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(actualSceneLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(firstOptionButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 733, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(thirdOptionButton, GroupLayout.PREFERRED_SIZE, 733, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(fourthOptionButton, GroupLayout.PREFERRED_SIZE, 733, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(secondOptionButton, GroupLayout.PREFERRED_SIZE, 733, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(sceneNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(actualSceneLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(firstOptionButton, GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+                                        .addComponent(thirdOptionButton, GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+                                        .addComponent(fourthOptionButton, GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+                                        .addComponent(secondOptionButton, GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
+                                .addComponent(sceneNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(actualSceneLabel, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(firstOptionButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
@@ -148,7 +156,7 @@ public class GUI extends JFrame {
                                 .addComponent(thirdOptionButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fourthOptionButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
 
         pack();
@@ -160,6 +168,7 @@ public class GUI extends JFrame {
     private JButton thirdOptionButton;
     private JButton fourthOptionButton;
     private JLabel actualSceneLabel;
+    private JLabel sceneNameLabel;
     private JMenu topMenu;
     private JMenuBar topMenuBar;
     private JMenuItem topMenuExitProgram;
