@@ -34,6 +34,12 @@ public class GUI extends JFrame {
         topMenuBar = new JMenuBar();
         topMenu = new JMenu();
         topMenuExitProgram = new JMenuItem();
+        topMenuLoadNewStory = new JMenuItem();
+        topMenuRecentlyUsed = new JMenu();
+        topMenuRecentlyUsed0 = new JMenuItem();
+        topMenuRecentlyUsed1 = new JMenuItem();
+        topMenuRecentlyUsed2 = new JMenuItem();
+        topMenuRecentlyUsed3 = new JMenuItem();
 
         setTitle("Best text game ever.");
         setResizable(false);
@@ -109,6 +115,29 @@ public class GUI extends JFrame {
         topMenu.setText("File");
         topMenu.setFont(new Font("Century", 0, 12));
 
+        topMenuLoadNewStory.setFont(new Font("Century", 0, 12));
+        topMenuLoadNewStory.setText("Load new story");
+
+        topMenuRecentlyUsed.setFont(new Font("Century", 0, 12));
+        topMenuRecentlyUsed.setText("Recently used stories");
+
+        topMenuRecentlyUsed0.setFont(new Font("Century", 0, 12));
+        topMenuRecentlyUsed0.setText("latest");
+
+        topMenuRecentlyUsed1.setFont(new Font("Century", 0, 12));
+        topMenuRecentlyUsed1.setText("2nd latest");
+
+        topMenuRecentlyUsed2.setFont(new Font("Century", 0, 12));
+        topMenuRecentlyUsed2.setText("3nd latest");
+
+        topMenuRecentlyUsed3.setFont(new Font("Century", 0, 12));
+        topMenuRecentlyUsed3.setText("oldest");
+
+        topMenuRecentlyUsed.add(topMenuRecentlyUsed0);
+        topMenuRecentlyUsed.add(topMenuRecentlyUsed1);
+        topMenuRecentlyUsed.add(topMenuRecentlyUsed2);
+        topMenuRecentlyUsed.add(topMenuRecentlyUsed3);
+
         topMenuExitProgram.setFont(new Font("Century", 0, 12));
         topMenuExitProgram.setText("Exit game");
         topMenuExitProgram.addActionListener(new ActionListener() {
@@ -120,6 +149,9 @@ public class GUI extends JFrame {
                 }
             }
         });
+
+        topMenu.add(topMenuLoadNewStory);
+        topMenu.add(topMenuRecentlyUsed);
         topMenu.add(topMenuExitProgram);
 
         topMenuBar.add(topMenu);
@@ -172,4 +204,10 @@ public class GUI extends JFrame {
     private JMenu topMenu;
     private JMenuBar topMenuBar;
     private JMenuItem topMenuExitProgram;
+    private JMenuItem topMenuLoadNewStory;
+    private JMenu topMenuRecentlyUsed;
+    private JMenuItem topMenuRecentlyUsed0;
+    private JMenuItem topMenuRecentlyUsed1;
+    private JMenuItem topMenuRecentlyUsed2;
+    private JMenuItem topMenuRecentlyUsed3;
 }
