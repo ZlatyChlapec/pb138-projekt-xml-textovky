@@ -22,7 +22,7 @@
                 </xsd:restriction>
             </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute name="starting_scene" type="xsd:positiveInteger" use="required"/>
+        <xsd:attribute name="startingScene" type="xsd:positiveInteger" use="required"/>
     </xsd:complexType>
     
     <xsd:complexType name="sceneType">

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<game name="test" startingScene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="textGameXmlSchema.xsd">
+    <scene id="1">
+        <name>First scene</name>
+        <description>
+            This is first scene of the testing XML game.
+        </description>
+        <choices>
+            <choice goTo="2" points="1"/>
+            <choice goTo="3" points="1">
+                <text>Second choice.</text>
+            </choice>
+            <choice goTo="4" points="1">
+                <text>Third choice.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="2">
+        <name>Second scene</name>
+        <description>
+            This is second scene of the testing XML game.
+        </description>
+        <choices>
+            <choice goTo="1" points="1">
+                <text>First choice.</text>
+            </choice>
+            <choice goTo="3" points="1">
+                <text>Second choice.</text>
+            </choice>
+            <choice goTo="4" points="1">
+                <text>Third choice.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="3">
+        <name>Third scene</name>
+        <description>
+            This is third scene of the testing XML game.
+        </description>
+        <choices>
+            <choice goTo="1" points="1">
+                <text>First choice.</text>
+            </choice>
+            <choice goTo="2" points="1">
+                <text>Second choice.</text>
+            </choice>
+            <choice goTo="4" points="1">
+                <text>Third choice.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="4">
+        <name>Fourth scene</name>
+        <description>
+            This is fourth scene of the testing XML game.
+        </description>
+        <choices>
+            <choice goTo="1" points="1">
+                <text>First choice.</text>
+            </choice>
+            <choice goTo="2" points="1">
+                <text>Second choice.</text>
+            </choice>
+            <choice goTo="3" points="1">
+                <text>Third choice.</text>
+            </choice>
+        </choices>
+    </scene>
+</game>
