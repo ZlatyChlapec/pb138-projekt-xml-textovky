@@ -4,18 +4,21 @@
  */
 package cz.muni.fi.pb138;
 
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.validation.*;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,20 +49,7 @@ public class XmlValidator {
     public XmlValidator(){
     }
 
-    public void validateGameXml(String xmlName) throws IOException, SchemaValidateException {
-//        try {
-//            SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-//            File schemaLocation = new File(gameSchema);
-//            Schema schema = factory.newSchema(schemaLocation);
-//            Validator validator = schema.newValidator();
-//            Source source = new StreamSource(xmlName);
-//            validator.validate(source);
-//            System.out.println(xmlName + " is valid.");
-//        }
-//        catch (SAXException ex) {
-//            System.out.println(xmlName + " is not valid because ");
-//            System.out.println(ex.getMessage());
-//        }  
+    public void validateGameXml(String xmlName) throws IOException, SchemaValidateException{
         try {
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = sf.newSchema(new File("textGameXmlSchema.xsd"));
@@ -72,10 +62,8 @@ public class XmlValidator {
             docBuilder.setErrorHandler(new ValidationErrorHandler());
             Document doc = docBuilder.parse(new File(xmlName));
         } catch (SAXException ex) {
-            System.err.println("Error: " + ex.getMessage());
             throw new SchemaValidateException(ex.getMessage());
         } catch (ParserConfigurationException ex) {
-            System.err.println("Parser configuration error: " + ex.getMessage());
             throw new SchemaValidateException(ex.getMessage());
         }
     }
