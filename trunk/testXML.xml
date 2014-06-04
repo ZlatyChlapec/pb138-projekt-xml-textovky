@@ -5,7 +5,7 @@ and open the template in the editor.
 -->
 
 
-<game name="test" starting_scene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<game name="test" startingScene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="textGameXmlSchema.xsd">
     <scene id="1">
         <name>First scene</name>
