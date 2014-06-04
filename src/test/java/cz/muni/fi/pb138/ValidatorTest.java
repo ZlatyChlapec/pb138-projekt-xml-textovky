@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
@@ -17,11 +19,11 @@ import static org.junit.Assert.fail;
  *         created on June 3, 2014
  */
 public class ValidatorTest {
-    private Validator validator;
+    private XmlValidator validator;
 
     @Before
     public void setUp() throws Exception {
-        validator = new Validator("textGameXmlSchema.xsd");
+        validator = new XmlValidator();
     }
 
     @After
@@ -32,20 +34,24 @@ public class ValidatorTest {
     @Test
     public void correctXml() {
         try {
-            String message = validator.validate("testXML.xml");
+            validator.validateGameXml("testXML.xml");
             assertThat(message, is(nullValue()));
         } catch (IOException ioe) {
             fail("IOError - textXml.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptySceneDescription() {
         try {
-            String message = validator.validate("emptySceneDescription.xml");
+            validator.validateGameXml("emptySceneDescription.xml");
             assertThat(message, is(nullValue()));
         } catch (IOException ioe) {
             fail("IOError - emptySceneDescription.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -53,277 +59,331 @@ public class ValidatorTest {
     @Test
     public void duplicitSceneId() {
         try {
-            String message = validator.validate("duplicitSceneId.xml");
+            validator.validateGameXml("duplicitSceneId.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - duplicitSceneId.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void wrongRootName() {
         try {
-            String message = validator.validate("wrongRootName.xml");
+            validator.validateGameXml("wrongRootName.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - wrongRootName.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingGameName() {
         try {
-            String message = validator.validate("missingGameName.xml");
+            validator.validateGameXml("missingGameName.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingGameName.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptyGameName() {
         try {
-            String message = validator.validate("emptyGameName.xml");
+            validator.validateGameXml("emptyGameName.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptyGameName.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingGameStartingScene() {
         try {
-            String message = validator.validate("missingGameStartingScene.xml");
+            validator.validateGameXml("missingGameStartingScene.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingGameStartingScene.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptyGameStartingScene() {
         try {
-            String message = validator.validate("emptyGameStartingScene.xml");
+            validator.validateGameXml("emptyGameStartingScene.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptyGameStartingScene.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void negativeGameStartingScene() {
         try {
-            String message = validator.validate("negativeGameStartingScene.xml");
+            validator.validateGameXml("negativeGameStartingScene.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - negativeGameStartingScene.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void stringGameStartingScene() {
         try {
-            String message = validator.validate("stringGameStartingScene.xml");
+            validator.validateGameXml("stringGameStartingScene.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - stringGameStartingScene.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void oneScene() {
         try {
-            String message = validator.validate("oneScene.xml");
+            validator.validateGameXml("oneScene.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - oneScene.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingSceneId() {
         try {
-            String message = validator.validate("missingSceneId.xml");
+            validator.validateGameXml("missingSceneId.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingSceneId.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptySceneId() {
         try {
-            String message = validator.validate("emptySceneId.xml");
+            validator.validateGameXml("emptySceneId.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptySceneId.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void negativeSceneId() {
         try {
-            String message = validator.validate("negativeSceneId.xml");
+            validator.validateGameXml("negativeSceneId.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - negativeSceneId.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void stringSceneId() {
         try {
-            String message = validator.validate("stringSceneId.xml");
+            validator.validateGameXml("stringSceneId.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - stringSceneId.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingSceneName() {
         try {
-            String message = validator.validate("missingSceneName.xml");
+            validator.validateGameXml("missingSceneName.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingSceneName.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptySceneName() {
         try {
-            String message = validator.validate("emptySceneName.xml");
+            validator.validateGameXml("emptySceneName.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptySceneName.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingSceneDescription() {
         try {
-            String message = validator.validate("missingSceneDescription.xml");
+            validator.validateGameXml("missingSceneDescription.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingSceneDescription.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingSceneChoices() {
         try {
-            String message = validator.validate("missingSceneChoices.xml");
+            validator.validateGameXml("missingSceneChoices.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingSceneChoices.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptySceneChoices() {
         try {
-            String message = validator.validate("emptySceneChoices.xml");
+            validator.validateGameXml("emptySceneChoices.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptySceneChoices.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void tooMuchSceneChoices() {
         try {
-            String message = validator.validate("tooMuchSceneChoices.xml");
+            validator.validateGameXml("tooMuchSceneChoices.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - tooMuchSceneChoices.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingChoiceText() {
         try {
-            String message = validator.validate("missingChoiceText.xml");
+            validator.validateGameXml("missingChoiceText.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingChoiceText.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptyChoiceText() {
         try {
-            String message = validator.validate("emptyChoiceText.xml");
+            validator.validateGameXml("emptyChoiceText.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptyChoiceText.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void duplicitChoiceText() {
         try {
-            String message = validator.validate("duplicitChoiceText.xml");
+            validator.validateGameXml("duplicitChoiceText.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - duplicitChoiceText.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingChoiceGoTo() {
         try {
-            String message = validator.validate("missingChoiceGoTo.xml");
+            validator.validateGameXml("missingChoiceGoTo.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingChoiceGoTo.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptyChoiceGoTo() {
         try {
-            String message = validator.validate("emptyChoiceGoTo.xml");
+            validator.validateGameXml("emptyChoiceGoTo.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptyChoiceGoTo.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void negativeChoiceGoTo() {
         try {
-            String message = validator.validate("negativeChoiceGoTo.xml");
+            validator.validateGameXml("negativeChoiceGoTo.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - negativeChoiceGoTo.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void stringChoiceGoTo() {
         try {
-            String message = validator.validate("stringChoiceGoTo.xml");
+            validator.validateGameXml("stringChoiceGoTo.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - stringChoiceGoTo.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void missingChoicePoints() {
         try {
-            String message = validator.validate("missingChoicePoints.xml");
+            validator.validateGameXml("missingChoicePoints.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - missingChoicePoints.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            Logger.getLogger(ValidatorTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void emptyChoicePoints() {
         try {
-            String message = validator.validate("emptyChoicePoints.xml");
+            validator.validateGameXml("emptyChoicePoints.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - emptyChoicePoints.xml: " + ioe.getMessage());
@@ -333,7 +393,7 @@ public class ValidatorTest {
     @Test
     public void stringChoicePoints() {
         try {
-            String message = validator.validate("stringChoicePoints.xml");
+            validator.validateGameXml("stringChoicePoints.xml");
             assertThat(message, is(not(nullValue())));
         } catch (IOException ioe) {
             fail("IOError - stringChoicePoints.xml: " + ioe.getMessage());
