@@ -15,25 +15,13 @@
         <xsd:sequence>
             <xsd:element name="scene" type="sceneType" minOccurs="2" maxOccurs="unbounded"/>
         </xsd:sequence>
-        <xsd:attribute name="name" use="required">
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                    <xsd:maxLength value="40"/>
-                </xsd:restriction>
-            </xsd:simpleType>
-        </xsd:attribute>
+        <xsd:attribute name="name" type="nonEmptyString" use="required"/>
         <xsd:attribute name="startingScene" type="xsd:positiveInteger" use="required"/>
     </xsd:complexType>
 
     <xsd:complexType name="sceneType">
         <xsd:sequence>
-            <xsd:element name="name" minOccurs="1" maxOccurs="1">
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:maxLength value="100"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:element>
+            <xsd:element name="name" type="nonEmptyString" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="description" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="choices" type="choicesType" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
@@ -48,9 +36,16 @@
 
     <xsd:complexType name="choiceType">
         <xsd:sequence>
-            <xsd:element name="text" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="text" type="nonEmptyString" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="goTo" type="xsd:positiveInteger" use="required"/>
         <xsd:attribute name="points" type="xsd:integer" use="required"/>
     </xsd:complexType>
+
+    <xsd:simpleType name="nonEmptyString">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
 </xsd:schema>
