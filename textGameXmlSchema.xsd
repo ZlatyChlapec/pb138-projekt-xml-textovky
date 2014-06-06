@@ -30,7 +30,7 @@
 
     <xsd:complexType name="choicesType">
         <xsd:sequence>
-            <xsd:element name="choice" type="choiceType" minOccurs="1" maxOccurs="4"/>
+            <xsd:element name="choice" type="choiceType" minOccurs="0" maxOccurs="4"/>
         </xsd:sequence>
     </xsd:complexType>
 
