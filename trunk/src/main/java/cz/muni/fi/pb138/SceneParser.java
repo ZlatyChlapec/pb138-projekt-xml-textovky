@@ -17,9 +17,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -47,24 +45,27 @@ public class SceneParser {
         doc = builder.parse(uri.toString());
     }
     
-    public static GameScene parseScene(int id) {
-        String xPathScene = "//scene[@id='"+id+"']"; 
+    public GameScene parseScene(int id) {
+        String xPathScene; 
         Node node;
         try {
-            node = (Node) xPath.evaluate(xPathScene, doc.getDocumentElement(), XPathConstants.NODE);
-            NodeList list = node.getChildNodes();
-            String sceneName = list.item(0).getNodeValue();
-            String sceneDesc = list.item(1).getNodeValue();
-            GameScene scene = new GameScene(sceneName,sceneDesc);
-            NodeList choices = list.item(2).getChildNodes();
-            int count = choices.getLength();
-            for(int i=0;i<count;i++) {
-                String choiceText = choices.item(i).getFirstChild().getNodeValue();
-                NamedNodeMap attributes = choices.item(i).getAttributes();
-                String goTo = attributes.getNamedItem("goTo").getNodeValue();
-                int goToId = Integer.parseInt(goTo);
-                scene.setChoice(new Choice(goToId,choiceText));
+            xPathScene = "//scene[@id='"+id+"']/name";
+            String sceneName = (String) xPath.evaluate(xPathScene, doc.getDocumentElement(), XPathConstants.STRING);
+            xPathScene = "//scene[@id='"+id+"']/description";
+            String sceneDesc = (String) xPath.evaluate(xPathScene, doc.getDocumentElement(), XPathConstants.STRING);
+            GameScene scene = new GameScene(id,sceneName.trim(),sceneDesc.trim());
+            xPathScene = "count(//scene[@id='"+id+"']//choice)";
+            double countDouble = (Double) xPath.evaluate(xPathScene, doc.getDocumentElement(), XPathConstants.NUMBER);
+            int count = (int) countDouble;
+            for(int i=1;i<=count;i++) {
+                String xPathChoice = "//scene[@id='"+id+"']//choice["+i+"]/text";
+                String choiceText = (String) xPath.evaluate(xPathChoice, doc.getDocumentElement(), XPathConstants.STRING);
+                xPathChoice = "//scene[@id='"+id+"']//choice["+i+"]/@goTo";
+                double choiceGoToDouble = (Double) xPath.evaluate(xPathChoice, doc.getDocumentElement(), XPathConstants.NUMBER);
+                int choiceGoTo = (int) choiceGoToDouble;
+                scene.setChoice(new Choice(choiceGoTo, choiceText));
             }
+            return scene;
         } catch (XPathExpressionException ex) {
             Logger.getLogger(SceneParser.class.getName()).log(Level.SEVERE, null, ex);
         }              

@@ -12,6 +12,7 @@ import java.util.List;
  * @author Filip
  */
 public class GameScene {
+    private long id;
     private String sceneName;
     private String sceneDesc;
     private List<Choice> choices = new ArrayList<>();
@@ -19,7 +20,8 @@ public class GameScene {
     public GameScene() {
     }
 
-    public GameScene(String sceneName, String sceneDesc) {
+    public GameScene(int id, String sceneName, String sceneDesc) {
+        this.id = id;
         this.sceneName = sceneName;
         this.sceneDesc = sceneDesc;
     }
@@ -43,4 +45,33 @@ public class GameScene {
     public int getChoicesCount() {
         return choices.size();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GameScene other = (GameScene) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "GameScene{" + "id=" + id + ", sceneName=" + sceneName + ", sceneDesc=" + sceneDesc + '}';
+    }
+    
+    
 }
