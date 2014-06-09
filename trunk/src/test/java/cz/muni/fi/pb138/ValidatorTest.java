@@ -14,7 +14,7 @@ import static org.junit.Assert.fail;
  */
 public class ValidatorTest {
     private XmlValidator validator;
-    private final String PATH = "src/test/resources/";
+    private final String PATH = "src/test/resources/ValidatorTestFiles/";
 
     @Before
     public void setUp() throws Exception {
@@ -33,7 +33,7 @@ public class ValidatorTest {
         } catch (IOException ioe) {
             fail("IOError - textXML.xml: " + ioe.getMessage());
         } catch (SchemaValidateException ex) {
-            fail("File - testXML.xml should be correct: " + ex.getMessage());
+            fail("Fail - testXML.xml should be correct: " + ex.getMessage());
         }
     }
 
@@ -44,7 +44,18 @@ public class ValidatorTest {
         } catch (IOException ioe) {
             fail("IOError - emptySceneDescription.xml: " + ioe.getMessage());
         } catch (SchemaValidateException ex) {
-            fail("File - emptySceneDescription.xml should be correct: " + ex.getMessage());
+            fail("Fail - emptySceneDescription.xml should be correct: " + ex.getMessage());
+        }
+    }
+
+    @Test
+    public void emptySceneChoices() {
+        try {
+            validator.validateGameXml(PATH + "emptySceneChoices.xml");
+        } catch (IOException ioe) {
+            fail("IOError - emptySceneChoices.xml: " + ioe.getMessage());
+        } catch (SchemaValidateException ex) {
+            fail("Fail - emptySceneChoices.xml should be correct: " + ex.getMessage());
         }
     }
 
@@ -232,17 +243,6 @@ public class ValidatorTest {
             fail("Fail - missing element choices in element scene");
         } catch (IOException ioe) {
             fail("IOError - missingSceneChoices.xml: " + ioe.getMessage());
-        } catch (SchemaValidateException ignored) {
-        }
-    }
-
-    @Test
-    public void emptySceneChoices() {
-        try {
-            validator.validateGameXml(PATH + "emptySceneChoices.xml");
-            fail("Fail - element choices in element scene could not be empty");
-        } catch (IOException ioe) {
-            fail("IOError - emptySceneChoices.xml: " + ioe.getMessage());
         } catch (SchemaValidateException ignored) {
         }
     }

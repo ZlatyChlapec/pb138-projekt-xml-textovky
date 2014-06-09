@@ -25,6 +25,9 @@
         <module name="PB138.TextGame" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PB138.TextGame" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 
