@@ -70,7 +70,7 @@ public class StoryValidator {
         return (long) startDouble;
     }
     
-    public Map validateGameStory() throws StoryValidateException {
+    public Map<Long, GameScene> validateGameStory() throws StoryValidateException {
         try {
             String xPathId = "count(//scene)";
             double countDouble = (Double) xPath.evaluate(xPathId, doc.getDocumentElement(), XPathConstants.NUMBER);
