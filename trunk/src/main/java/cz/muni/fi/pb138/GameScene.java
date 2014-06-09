@@ -45,6 +45,14 @@ public class GameScene {
     public int getChoicesCount() {
         return choices.size();
     }
+    
+    public long getChoiceGoTo(int id) {
+        return choices.get(id).getGoTo();
+    }
+    
+    public String getChoiceText(int id) {
+        return choices.get(id).getText();
+    }
 
     @Override
     public int hashCode() {

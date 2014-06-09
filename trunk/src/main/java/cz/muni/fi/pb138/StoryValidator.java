@@ -35,20 +35,16 @@ public class StoryValidator {
     Map<Long, GameScene> game = new HashMap<>();
     Set<Long> checked = new HashSet<>();
 
-    public StoryValidator(String fileName) {
+    public StoryValidator(String fileName) throws IOException {
         File xmlFile = new File(fileName);
         try {
             parser = SceneParser.newInstance(xmlFile);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             doc = builder.parse(xmlFile.toURI().toString());
-        } catch (SAXException ex) {
+        } catch (SAXException | ParserConfigurationException ex) {
             Logger.getLogger(TextGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(TextGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(TextGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
     
     public void checkScene(long id) throws StoryValidateException {
@@ -68,7 +64,7 @@ public class StoryValidator {
     }
     
     public long getStartingScene() throws XPathExpressionException {
-        double startDouble = 0;
+        double startDouble;
         String xPathId = "/game/@startingScene";
         startDouble = (Double) xPath.evaluate(xPathId, doc.getDocumentElement(), XPathConstants.NUMBER);
         return (long) startDouble;

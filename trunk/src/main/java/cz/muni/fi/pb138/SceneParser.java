@@ -35,14 +35,9 @@ public class SceneParser {
         return new SceneParser(file.toURI());
     }
     
-    private SceneParser(URI uri) throws SAXException, ParserConfigurationException,
-            IOException {
-        // Vytvorime instanci tovarni tridy
+    private SceneParser(URI uri) throws SAXException, ParserConfigurationException,IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        // Pomoci tovarni tridy ziskame instanci DocumentBuilderu
         DocumentBuilder builder = factory.newDocumentBuilder();
-        // DocumentBuilder pouzijeme pro zpracovani XML dokumentu
-        // a ziskame model dokumentu ve formatu W3C DOM
         doc = builder.parse(uri.toString());
     }
     
