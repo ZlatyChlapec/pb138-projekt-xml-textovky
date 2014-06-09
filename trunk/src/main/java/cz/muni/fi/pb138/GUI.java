@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.xml.xpath.XPathExpressionException;
 
 /**
  * 426 max.
@@ -17,10 +21,15 @@ import java.io.File;
  */
 public class GUI extends JFrame {
 
+    private Map<Long,GameScene> scenes = new HashMap<>();
+    private long currentScene;
     private GUI mainFrame;
     private File storyFile;
 
-    public GUI() {
+    public GUI() throws IOException, StoryValidateException, XPathExpressionException {
+        StoryValidator validator = new StoryValidator("src/test/resources/ValidatorTestFiles/testXML.xml");
+        scenes = validator.validateGameStory();
+        currentScene = validator.getStartingScene();
         initComponents();
         mainFrame = this;
     }
@@ -54,6 +63,8 @@ public class GUI extends JFrame {
     }
 
     private void initComponents() {
+        
+        GameScene currentGameScane = scenes.get(currentScene);
 
         sceneNameLabel = new JLabel();
         actualSceneLabel = new JLabel();
@@ -82,7 +93,7 @@ public class GUI extends JFrame {
             }
         });
 
-        actualSceneLabel.setText("Scene text will be here.");
+        actualSceneLabel.setText(currentGameScane.getSceneDesc());
         actualSceneLabel.setVerticalAlignment(SwingConstants.TOP);
         actualSceneLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 
