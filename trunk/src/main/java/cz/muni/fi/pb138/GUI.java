@@ -2,11 +2,13 @@ package cz.muni.fi.pb138;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 /**
  * 426 max.
@@ -16,14 +18,42 @@ import java.awt.event.WindowEvent;
 public class GUI extends JFrame {
 
     private GUI mainFrame;
+    private File storyFile;
 
     public GUI() {
         initComponents();
         mainFrame = this;
     }
 
-    private void initComponents() {
+    private void exitActionPerformed(AWTEvent e) {
+        int result = JOptionPane.showConfirmDialog(mainFrame, "Are you sure? All your progress will be lost.",
+                "Exit confrimation", JOptionPane.YES_NO_OPTION);
+        if (result == 0) {
+            System.exit(0);
+        }
+    }
 
+    private void loadNewStoryActionPerformed(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Select file with story.");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.xml", "xml");
+        chooser.setFileFilter(filter);
+        if(chooser.showOpenDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
+            storyFile = chooser.getSelectedFile();
+            String[] temp = storyFile.getName().split("\\.");
+            if (temp[temp.length - 1].equals("xml")) {
+                LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
+                        firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, storyFile);
+                swingWorker.execute();
+            } else {
+                storyFile = null;
+                JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
+
+    private void initComponents() {
 
         sceneNameLabel = new JLabel();
         actualSceneLabel = new JLabel();
@@ -48,11 +78,7 @@ public class GUI extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent we) {
-                int result = JOptionPane.showConfirmDialog(mainFrame, "Are you sure? All your progress will be lost.",
-                        "Exit confrimation", JOptionPane.YES_NO_OPTION);
-                if (result == 0) {
-                    System.exit(0);
-                }
+                exitActionPerformed(we);
             }
         });
 
@@ -117,6 +143,12 @@ public class GUI extends JFrame {
 
         topMenuLoadNewStory.setFont(new Font("Century", 0, 12));
         topMenuLoadNewStory.setText("Load new story");
+        topMenuLoadNewStory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadNewStoryActionPerformed(e);
+            }
+        });
 
         topMenuRecentlyUsed.setFont(new Font("Century", 0, 12));
         topMenuRecentlyUsed.setText("Recently used stories");
@@ -143,10 +175,7 @@ public class GUI extends JFrame {
         topMenuExitProgram.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = JOptionPane.showConfirmDialog(mainFrame, "Are you sure? All your progress will be lost.", "Exit confrimation", JOptionPane.YES_NO_OPTION);
-                if (result == 0) {
-                    System.exit(0);
-                }
+                exitActionPerformed(e);
             }
         });
 
