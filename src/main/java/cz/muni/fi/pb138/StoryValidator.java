@@ -67,6 +67,13 @@ public class StoryValidator {
         }
     }
     
+    public long getStartingScene() throws XPathExpressionException {
+        double startDouble = 0;
+        String xPathId = "/game/@startingScene";
+        startDouble = (Double) xPath.evaluate(xPathId, doc.getDocumentElement(), XPathConstants.NUMBER);
+        return (long) startDouble;
+    }
+    
     public Map validateGameStory() throws StoryValidateException {
         try {
             String xPathId = "count(//scene)";

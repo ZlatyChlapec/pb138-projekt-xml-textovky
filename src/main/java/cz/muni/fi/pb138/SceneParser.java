@@ -63,7 +63,7 @@ public class SceneParser {
                 String choiceText = (String) xPath.evaluate(xPathChoice, doc.getDocumentElement(), XPathConstants.STRING);
                 xPathChoice = "//scene[@id='"+id+"']//choice["+i+"]/@goTo";
                 double choiceGoToDouble = (Double) xPath.evaluate(xPathChoice, doc.getDocumentElement(), XPathConstants.NUMBER);
-                int choiceGoTo = (int) choiceGoToDouble;
+                long choiceGoTo = (long) choiceGoToDouble;
                 scene.setChoice(new Choice(choiceGoTo, choiceText));
             }
             return scene;
