@@ -20,7 +20,7 @@ public class GameScene {
     public GameScene() {
     }
 
-    public GameScene(int id, String sceneName, String sceneDesc) {
+    public GameScene(long id, String sceneName, String sceneDesc) {
         this.id = id;
         this.sceneName = sceneName;
         this.sceneDesc = sceneDesc;

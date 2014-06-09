@@ -9,15 +9,15 @@ package cz.muni.fi.pb138;
  * @author Filip
  */
 public class Choice {
-    private int goTo;
+    private long goTo;
     private String text;
 
-    public Choice(int goTo, String text) {
+    public Choice(long goTo, String text) {
         this.goTo = goTo;
         this.text = text;
     }
 
-    public int getGoTo() {
+    public long getGoTo() {
         return goTo;
     }
 
