@@ -45,11 +45,8 @@ public class XmlValidator {
             throw new SAXException(exception.getMessage());
         }
     }
-    
-    public XmlValidator(){
-    }
 
-    public void validateGameXml(String xmlName) throws IOException, SchemaValidateException{
+    public void validateGameXml(String xmlName) throws IOException, SchemaValidateException {
         try {
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = sf.newSchema(new File("textGameXmlSchema.xsd"));
