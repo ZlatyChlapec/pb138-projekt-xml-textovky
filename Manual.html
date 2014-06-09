@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+
+<html lang="cs" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Manuál pro tvorbu textových her s nástrojem Textovky</title>
+</head>
+<body>
+    <h1>Dokumentace k programu Textovky</h1>
+    <b>Program vznikl jako projekt v rámci výuky předmětu PB138 - Moderní značkovaci jazyky a jejich aplikace na Fakultě informatiky Masarykovy univerzity v Brně.</b>
+    <p>Program umožňuje odehrávat jednoduché textové hry (textovky) prostřednictvím přiloženého rozhraní. Scénáře her si hráči mohou tvořit sami.</p>
+    <br>
+    <h2>Obsah:</h2><br>
+    <a href="#uvod">Popis schématu</a><br>
+    <a href="#markup">Popis značek</a><br>
+    <ul>
+        <li><a href="#game">Značka &lt;game&gt;</a></li>
+        <li><a href="#scene">Značka &lt;scene&gt;</a></li>
+        <li><a href="#name">Značka &lt;name&gt;</a></li>
+        <li><a href="#description">Značka &lt;description&gt;</a></li>
+        <li><a href="#chocies">Značka &lt;choices&gt;</a></li>
+        <li><a href="#chocie">Značka &lt;choice&gt;</a></li>
+     </ul>
+    <br>
+    <h2><a id="uvod">Schéma</a></h2>
+    <p>Základem scénářů je příběh, uložený ve formátu xml, který je možné po vytvoření načíst do ovládacího programu a odehrát.</p>
+    <p>Každý takovýto příběh musí mít následující strukturu (podrobněji viz jednotlivé odkazy:)</p>
+    <ul><li>&lt;<a href="#game">game</a> name="jmeno" startingScene=cislo&gt;
+            <ul>
+                <li>
+                    &lt;<a href="#scene">scene</a> id="#cislo"&gt;
+                    <ul>
+                        <li>&lt;<a href="#name">name</a>&gt;Jméno scény&lt;<a href="#name">/name</a>&gt;</li>
+                        <li>&lt;<a href="#description">description</a>&gt;Popis scény, neboli co se ve hře děje<a href="#description">&lt;/description&gt;</a></li>
+                        <li>
+                            &lt;<a href="#choices">choices</a>&gt;
+                            <ul>
+                                <li>&lt;choice goTo="#cislo" points="cislo"&gt;Volba akce pro danou scénu&lt;/choice&gt;</li>
+                                <li>...</li>
+                            </ul>
+                            &lt;<a href="#choices">/choices</a>&gt;
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        &lt;<a href="#game">/game</a>&gt;
+        </li>
+</ul>
+    <br>
+    <p>Každá hra musí obsahovat minimálně dvě scény, z nichž jedna musí být počáteční. Tu určuje atribut startingScene u první značky hry.</p>
+    <p>Hra se skládá z jednotlivých scén, mezi kterými je možné přecházet prostřednictvím voleb. Z toho důvodu musí každá scéna mít definované své ID, které slouží jako informace pro navigaci.</p>
+    <p>Každá scéna kromě poslední obsahuje volby akcí, které je možné v ní udělat. Tyto akce se nachází ve značce &lt;choices&gt;, která je párová a značí výčet jednotlivých možností.<br>Tyto volby mohou být maximálně čtyři. Pokud má být scéna poslední, nechte tento výčet prázdný.</p>
+    <br/>
+    <a id="markup"><h2>Seznam značek</h2></a>
+    <br><br>
+    <a id="game"><h3>Značka &lt;game&gt;</h3></a>
+    <i>
+        Nadřazená značka: není<br>
+        Musí obsahovat: <a href="#scene">&lt;scene&gt;</a> (alespoň dvakrát)
+        Má atributy: #name a #startingScene
+        Příklad zápisu: &lt;game name="Enderova hra" startingScene="1"&gt;
+    </i>
+    <p><b>Párová značka, každá otevřená scéna musí být ukončená odpovídajícím &lt;/scene&gt;</b></p>
+    <p>Touto značkou se uvozuje celá hra. Značka je na nejvyšší úrovni a má dva <b>attributy</b> - <b><i>name</i></b> a <b><i>startingScene</i></b>.</p>
+    <p>Každý sobour se hrou může obsahovat nanejvýš jednu takovouto značku, to znamená, že v nahratelném souboru musí být vždy právě jedna hra.</p>
+    <p>Atribut <b><i>name</i></b> slouží pro snazší identifikaci hry při prohlížení souboru. Atribut <b><i>startingScene</i></b> udává, na které číslo scény má program přejít po otevření souboru. Jinými slovy jde o první zobrazenou scénu.</p>
+    <p>Na konec hry, tedy jakmile jsme zapsali všechny scény a další údaje, musíme vložit ukončující značku &lt;/game&gt;.</p>
+    <br>
+    <a id="scene"><h3>Značka &lt;scene&gt;</h3></a>
+    <i>
+        Nadřazená značka: <a href="#game">&lt;game&gt;</a><br>
+        Musí obsahovat: <a href="#name">&lt;name&gt;</a>,<a href="#description">&lt;description&gt;</a> a <a href="#choices">&lt;choices&gt;</a><br>
+        Má atributy: #id<br>
+        Příklad zápisu: &lt;scene id="1"&gt;<br>
+    </i>
+    <p><b>Párová značka, každá otevřená scéna musí být ukončená odpovídajícím &lt;/scene&gt;</b></p>
+    <p>Tato značka se nachází uvnitř značky &lt;game&gt; a slouží k označení scén ve hře. Každá hra musí mít minimálně dvě scény - počáteční a koncovou.</p>
+    <p>Označuje začátek scény. Musí mít <b>atribut</b> <b><i>id</i></b>. Ten slouží pro identifikaci scén pro účely programu a také pro značku choice jako parametr pro přechod.</p>
+    <p>Na konec scény, tedy jakmile jsme zapsali její jméno, popis a volby, které v ní můžeme udělat, musíme vložit ukončující značku &lt;/scene&gt;.</p>
+    <br>
+    <a id="name"><h3>Značka &lt;name&gt;</h3></a>
+    <i>
+        Nadřazená značka: <a href="#scene">&lt;scene&gt;</a><br>
+        Formát obsahu: Text<br>
+        Příklad zápisu: &lt;name&gt;Jméno scény&lt;/name&gt;<br>
+    </i>
+    <p><b>Párová značka, každé jméno musí být ukončené odpovídajícím &lt;/name&gt;</b></p>
+    <p>Značka name udává jméno scény, které se zobrazí ve hře. Musí být uvedena v každé scéně právě jednou a obsahovat alespoň jeden zobrazitelný znak.</p>
+    <br>
+    <a id="description"><h3>Značka &lt;description&gt;</h3></a>
+    <i>
+        Nadřazená značka: <a href="#scene">&lt;scene&gt;</a><br>
+        Formát obsahu: Text<br>
+        Příklad zápisu: &lt;description&gt;V lese se tě snaží sežrat vlk.&lt;/description&gt;<br>
+    </i>
+    <p><b>Párová značka. Popis scény musí být ukončen odpovídajícím &lt;/description&gt;</b></p>
+    <p>Tato značka se nachází uvnitř scény a udává informace o tom, co postava vidí, nebo co se v dané scéně děje. Musí být v každé scéně právě jednou.</p>
+    <br>
+    <a id="choices"><h3>Značka &lt;choices&gt;</h3></a>
+    <i>
+        Nadřazená značka: <a href="#scene">&lt;scene&gt;</a><br>
+        Obsahuje: &lt;choice&gt; (až čtyřikrát)<br>
+        Příklad zápisu: &lt;name&gt;Jméno scény&lt;/name&gt;<br>
+    </i>
+    <p>Značí počátek pro zápis voleb, které je možné v dané scéně udělat.<br>
+       Tato značka se musí vysktovat právě jednou uvnitř každé scény. Jednotlivé volby (až čtyři) jsou potom zadány jako značky uvnitř této.<br>
+       Značka slouží i k označení poslední scény hry. V takovém případě ji použijeme prázdnou, to jest nedáme mezi její otevření a zavření žádnou značku <a href="#choice">&lt;choice&gt;</a>.
+    </p>
+    <br>
+    <a id="choice"><h3>Značka &lt;choice&gt;</h3></a>
+    <i>
+        Nadřazená značka: <a href="#choices">&lt;choices&gt;</a><br>
+        Formát obsahu: Text<br>
+        Má atributy: #goTo, #points
+        Příklad zápisu: &lt;choice&gt;<br>
+    </i>
+    <p><b>Párová značka. Musí být uzavřena odpovídající značkou &lt;/choice&gt;</b></p>
+    <p>Značka se používá pro jednotlivé volby, které může uživatel udělat v rámci scény. Má atributy <b><i>goTo</i></b> a <b><i>points</i></b>.<br>
+    Atribut <b><i>goTo</i></b> slouží pro nastavení identifikace scény, která se zobrazí po vybrání dané volby. Jeho hodnota musí být shodná s id některé existující scény.<br>
+    Atribut <b><i>points</i></b>Slouží k ohodnocení hráčova postupu. Může obsahovat libovolné celé číslo.</p>
+    <br>
+    <a id="text"><h3>Značka &lt;text&gt;</h3></a>
+    <i>
+        Nadřazená značka: <a href="#scene">&lt;choice&gt;</a><br>
+        Formát obsahu: Text<br>
+        Příklad zápisu: &lt;text&gt;Vysmeknout se vlkovi.&lt;/text&gt;<br>
+    </i>
+</body>
+</html>
