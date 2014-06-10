@@ -29,11 +29,12 @@ import java.util.logging.Logger;
  */
 public class StoryValidator {
     private Document doc;
-    SceneParser parser;
+    private SceneParser parser;
     private static XPathFactory xpf = XPathFactory.newInstance();
     private static XPath xPath = xpf.newXPath();
-    Map<Long, GameScene> game = new HashMap<>();
-    Set<Long> checked = new HashSet<>();
+    private Map<Long, GameScene> game = new HashMap<>();
+    private Set<Long> checked = new HashSet<>();
+    private boolean hasEnd;
 
     public StoryValidator(String fileName) throws IOException {
         File xmlFile = new File(fileName);
@@ -42,6 +43,7 @@ public class StoryValidator {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             doc = builder.parse(xmlFile.toURI().toString());
+            hasEnd = false;
         } catch (SAXException | ParserConfigurationException ex) {
             Logger.getLogger(TextGame.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -53,13 +55,14 @@ public class StoryValidator {
         }
         GameScene scene = (GameScene) game.get(id);
         checked.add(id);
-        for (int i=1;i<scene.getChoicesCount();i++) {
-            Choice choice = scene.getChoice(i-1);
-            long choiceId = choice.getGoTo();
+        if (scene.getChoicesCount()==0) hasEnd = true;
+        for (int i=1;i<=scene.getChoicesCount();i++) {
+            long choiceId = scene.getChoiceGoTo(i-1);
+            if (id == choiceId) throw new StoryValidateException("Choice reffering same scene where it is declared.");
             if (checked.contains(choiceId)) {
                 continue;
             }
-            checkScene(choice.getGoTo());
+            checkScene(choiceId);
         }
     }
     
@@ -68,6 +71,17 @@ public class StoryValidator {
         String xPathId = "/game/@startingScene";
         startDouble = (Double) xPath.evaluate(xPathId, doc.getDocumentElement(), XPathConstants.NUMBER);
         return (long) startDouble;
+    }
+    
+    public String getGameName() {
+        try {
+            String xPathGameName = "/game/@name";
+            String gameName = (String) xPath.evaluate(xPathGameName, doc.getDocumentElement(), XPathConstants.STRING);
+            return gameName;
+        } catch (XPathExpressionException ex) {
+            Logger.getLogger(StoryValidator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public Map<Long, GameScene> validateGameStory() throws StoryValidateException {
@@ -82,10 +96,9 @@ public class StoryValidator {
                 GameScene scene = parser.parseScene(id);
                 game.put(id, scene);
             }
-            xPathId = "/game/@startingScene";
-            double startDouble = (Double) xPath.evaluate(xPathId, doc.getDocumentElement(), XPathConstants.NUMBER);
-            long start = (long) startDouble;
-            checkScene(start);
+            checkScene(getStartingScene());
+            if (hasEnd == false) throw new StoryValidateException("Game has no final scene.");
+            if (count != checked.size()) throw new StoryValidateException("Game has unused scenes.");
             return game;
         } catch (XPathExpressionException ex) {
             Logger.getLogger(StoryValidator.class.getName()).log(Level.SEVERE, null, ex);

@@ -74,7 +74,7 @@ public class GUI extends JFrame {
         topMenuRecentlyUsed2 = new JMenuItem();
         topMenuRecentlyUsed3 = new JMenuItem();
 
-        setTitle("Best text game ever.");
+        setTitle("Text Game");
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {

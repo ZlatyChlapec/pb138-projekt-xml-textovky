@@ -333,38 +333,5 @@ public class ValidatorTest {
             fail("IOError - stringChoiceGoTo.xml: " + ioe.getMessage());
         } catch (SchemaValidateException ignored) {
         }
-    }
-
-    @Test
-    public void missingChoicePoints() {
-        try {
-            validator.validateGameXml(PATH + "missingChoicePoints.xml");
-            fail("Fail - missing attribute points in element choice");
-        } catch (IOException ioe) {
-            fail("IOError - missingChoicePoints.xml: " + ioe.getMessage());
-        } catch (SchemaValidateException ignored) {
-        }
-    }
-
-    @Test
-    public void emptyChoicePoints() {
-        try {
-            validator.validateGameXml(PATH + "emptyChoicePoints.xml");
-            fail("Fail - attribute points in element choice could not be empty");
-        } catch (IOException ioe) {
-            fail("IOError - emptyChoicePoints.xml: " + ioe.getMessage());
-        } catch (SchemaValidateException ignored) {
-        }
-    }
-
-    @Test
-    public void stringChoicePoints() {
-        try {
-            validator.validateGameXml(PATH + "stringChoicePoints.xml");
-            fail("Fail - string value of attribute points in element choice");
-        } catch (IOException ioe) {
-            fail("IOError - stringChoicePoints.xml: " + ioe.getMessage());
-        } catch (SchemaValidateException ignored) {
-        }
-    }
+    }    
 }
