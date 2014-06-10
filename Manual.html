@@ -20,6 +20,7 @@
         <li><a href="#description">Značka &lt;description&gt;</a></li>
         <li><a href="#chocies">Značka &lt;choices&gt;</a></li>
         <li><a href="#chocie">Značka &lt;choice&gt;</a></li>
+        <li><a href="#text">Značka &lt;text&gt;</a></li>
      </ul>
     <br>
     <h2><a id="uvod">Schéma</a></h2>
@@ -111,19 +112,20 @@
     <i>
         Nadřazená značka: <a href="#choices">&lt;choices&gt;</a><br>
         Formát obsahu: Text<br>
-        Má atributy: #goTo, #points
+        Má atributy: #goTo
         Příklad zápisu: &lt;choice&gt;<br>
     </i>
     <p><b>Párová značka. Musí být uzavřena odpovídající značkou &lt;/choice&gt;</b></p>
     <p>Značka se používá pro jednotlivé volby, které může uživatel udělat v rámci scény. Má atributy <b><i>goTo</i></b> a <b><i>points</i></b>.<br>
     Atribut <b><i>goTo</i></b> slouží pro nastavení identifikace scény, která se zobrazí po vybrání dané volby. Jeho hodnota musí být shodná s id některé existující scény.<br>
-    Atribut <b><i>points</i></b>Slouží k ohodnocení hráčova postupu. Může obsahovat libovolné celé číslo.</p>
     <br>
     <a id="text"><h3>Značka &lt;text&gt;</h3></a>
     <i>
-        Nadřazená značka: <a href="#scene">&lt;choice&gt;</a><br>
+        Nadřazená značka: <a href="#choice">&lt;choice&gt;</a><br>
         Formát obsahu: Text<br>
         Příklad zápisu: &lt;text&gt;Vysmeknout se vlkovi.&lt;/text&gt;<br>
     </i>
+    <p><b>Párová značka. Musí být uzavřena odpovídající značkou &lt;/text&gt;</b></p>
+    <p>Označuje text, který se zobrazí hráči</p>
 </body>
 </html>
