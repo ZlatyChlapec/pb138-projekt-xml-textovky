@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<game name="Test" startingScene="1">
+
+  <scene id="1">
+    <name>Třída</name>
+    <description>Sedíš ve třídě, uprostřed množství lidí. Před tebou je test, na tabuli je napsaný čas. Testování začíná za deset minut. Nepamatuješ si ani jak jsi se sem dostal, ani o jaký test jde. Jediné co máš je pocit, že jsi školu měl už dávno dokončit.</description>
+    <choices>
+      <choice goTo="2" points="0">
+        <text>Prozkoumat otázky.</text>
+      </choice>
+      <choice goTo="3" points="0">
+        <text>Rozhlédnout se po třídě.</text>
+      </choice>
+      <choice goTo="4" points="0">
+        <text>Pokusit se zjistit, jak jsi se sem dostal.</text>
+      </choice>
+    </choices>
+  </scene>
+
+  <scene id="2">
+    <name>Otázky</name>
+    <description>Rozhodl ses nahlédnout do otázek v testu... Zvedáš první stránku, vědom si, že do pokynu pro otevření zbývá ještě čas. Zahlédneš části otázek, ale pak si všimneš, že tě z dáli sleduje jeden ze zkoušejících.</description>
+    <choices>
+      <choice goTo="5" points="5">
+        <text>Přestat nahlížet a počkat na začátek testu.</text>
+      </choice>
+      <choice goTo="3" points="0">
+        <text>Rozhlédnout se po třídě.</text>
+      </choice>
+      <choice goTo="4" points="0">
+        <text>Pokusit se zjistit, jak jsi se sem dostal.</text>
+      </choice>
+    </choices>
+  </scene>
+
+  <scene id="3">
+    <name>Rozhlédnutí</name>
+    <description>Snažíš se rozhlédnout po třídě, jestli tě nenapadne, kde jsi. Bohužel nikoho nepoznáváš. Všichni muži a kluci na sobě mají stejná uniformní černá saka, všechny dívky a ženy mají stejné hnědo-vínové kostýmky. Zkoušející a dohlížející mají na sobě tytéž uniformy, takže není poznat, kdo jde kdo.</description>
+    <choices>
+      <choice goTo="5" points="5">
+        <text>Přestat se rozhlížet a počkat na začátek testu.</text>
+      </choice>
+      <choice goTo="3" points="0">
+        <text>Nahlédnout do otázek.</text>
+      </choice>
+      <choice goTo="4" points="0">
+        <text>Pokusit se zjistit, jak jsi se sem dostal.</text>
+      </choice>
+    </choices>
+  </scene>
+
+  <scene id="4">
+    <name>Kde to jsem?</name>
+    <description>Snažíš se vzpomenout kde jsi a jak jsi se sem dostal. Šíleně tě z toho rozbolí hlava, ale ani po minutách zírání do prázdna nejsi o nic moudřejší.</description>
+    <choices>
+      <choice goTo="5" points="5">
+        <text>Přestat se rozhlížet a počkat na začátek testu.</text>
+      </choice>
+      <choice goTo="3" points="0">
+        <text>Nahlédnout do otázek.</text>
+      </choice>
+      <choice goTo="4" points="0">
+        <text>Pokusit se zjistit, jak jsi se sem dostal.</text>
+      </choice>
+    </choices>
+  </scene>
+
+  <scene name="Konec" id="5">
+    <description>Mojo.</description>
+  </scene>
+ 
+</game>
