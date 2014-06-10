@@ -13,7 +13,7 @@ and open the template in the editor.
             This is first scene of the testing XML game.
         </description>
         <choices>
-            <choice goTo="2" points="1">
+            <choice goTo="2">
                 <text>First choice.</text>
             </choice>
         </choices>
@@ -24,7 +24,7 @@ and open the template in the editor.
             This is second scene of the testing XML game.
         </description>
         <choices>
-            <choice goTo="3" points="1">
+            <choice goTo="3">
                 <text>First choice.</text>
             </choice>
         </choices>
@@ -35,7 +35,7 @@ and open the template in the editor.
             This is third scene of the testing XML game.
         </description>
         <choices>
-            <choice goTo="4" points="1">
+            <choice goTo="4">
                 <text>First choice.</text>
             </choice>
         </choices>

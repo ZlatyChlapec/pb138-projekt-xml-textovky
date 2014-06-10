@@ -39,7 +39,6 @@
             <xsd:element name="text" type="nonEmptyString" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="goTo" type="xsd:positiveInteger" use="required"/>
-        <xsd:attribute name="points" type="xsd:integer" use="required"/>
     </xsd:complexType>
 
     <xsd:simpleType name="nonEmptyString">

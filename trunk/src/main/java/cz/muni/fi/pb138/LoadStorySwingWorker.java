@@ -25,6 +25,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
     private Choice[] choices;
     private int choice;
     private GameScene scene;
+    private String gameName;
 
     public LoadStorySwingWorker(JFrame mainFrame, JLabel sceneNameLabel, JLabel actualSceneLabel,
                                 JButton firstOptionButton, JButton secondOptionButton, JButton thirdOptionButton,
@@ -48,6 +49,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
         startingScene = storyValidator.getStartingScene();
         Map<Long, GameScene> scenes = storyValidator.validateGameStory();
 
+        gameName = storyValidator.getGameName();
         scene = scenes.get(startingScene);
         choice = scene.getChoicesCount();
         choices = new Choice[choice];
@@ -61,6 +63,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
     protected void done() {
         try {
             TextGame.scenes = get();
+            mainFrame.setTitle(gameName);
             sceneNameLabel.setText(scene.getSceneName());
             actualSceneLabel.setText(" "+ scene.getSceneDesc());
             switch (choice) {
