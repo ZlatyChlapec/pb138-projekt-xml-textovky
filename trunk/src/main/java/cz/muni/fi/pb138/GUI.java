@@ -56,6 +56,11 @@ public class GUI extends JFrame {
         swingWorker.execute();
     }
 
+    private void aboutActionPerformed(ActionEvent e) {
+        GUIAbout guiAbout = new GUIAbout();
+        guiAbout.setVisible(true);
+    }
+
     private void initComponents() {
 
         sceneNameLabel = new JLabel();
@@ -68,6 +73,7 @@ public class GUI extends JFrame {
         topMenu = new JMenu();
         topMenuExitProgram = new JMenuItem();
         topMenuLoadNewStory = new JMenuItem();
+        topMenuAbout = new JMenuItem();
         topMenuRecentlyUsed = new JMenu();
         topMenuRecentlyUsed0 = new JMenuItem();
         topMenuRecentlyUsed1 = new JMenuItem();
@@ -93,7 +99,7 @@ public class GUI extends JFrame {
         firstOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         firstOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
         firstOptionButton.setEnabled(false);
-        firstOptionButton.setText("<html>First option</html>");
+        firstOptionButton.setText("");
         firstOptionButton.setMargin(new Insets(2, 2, 2, 2));
         firstOptionButton.setVerticalAlignment(SwingConstants.TOP);
         firstOptionButton.setVerticalTextPosition(SwingConstants.TOP);
@@ -107,7 +113,7 @@ public class GUI extends JFrame {
 
         secondOptionButton.setFont(new Font("Century", 0, 11));
         secondOptionButton.setEnabled(false);
-        secondOptionButton.setText("<html>Second option</html>");
+        secondOptionButton.setText("");
         secondOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         secondOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
         secondOptionButton.setIconTextGap(2);
@@ -126,7 +132,7 @@ public class GUI extends JFrame {
         thirdOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         thirdOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
         thirdOptionButton.setEnabled(false);
-        thirdOptionButton.setText("<html>Third option</html>");
+        thirdOptionButton.setText("");
         thirdOptionButton.setMargin(new Insets(2, 2, 2, 2));
         thirdOptionButton.setVerticalAlignment(SwingConstants.TOP);
         thirdOptionButton.setVerticalTextPosition(SwingConstants.TOP);
@@ -142,7 +148,7 @@ public class GUI extends JFrame {
         fourthOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         fourthOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
         fourthOptionButton.setEnabled(false);
-        fourthOptionButton.setText("<html>Fourth option</html>");
+        fourthOptionButton.setText("");
         fourthOptionButton.setMargin(new Insets(2, 2, 2, 2));
         fourthOptionButton.setVerticalAlignment(SwingConstants.TOP);
         fourthOptionButton.setVerticalTextPosition(SwingConstants.TOP);
@@ -189,6 +195,15 @@ public class GUI extends JFrame {
         topMenuRecentlyUsed.add(topMenuRecentlyUsed2);
         topMenuRecentlyUsed.add(topMenuRecentlyUsed3);
 
+        topMenuAbout.setFont(new Font("Century", 0, 12));
+        topMenuAbout.setText("About");
+        topMenuAbout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                aboutActionPerformed(e);
+            }
+        });
+
         topMenuExitProgram.setFont(new Font("Century", 0, 12));
         topMenuExitProgram.setText("Exit game");
         topMenuExitProgram.addActionListener(new ActionListener() {
@@ -200,6 +215,7 @@ public class GUI extends JFrame {
 
         topMenu.add(topMenuLoadNewStory);
         topMenu.add(topMenuRecentlyUsed);
+        topMenu.add(topMenuAbout);
         topMenu.add(topMenuExitProgram);
 
         topMenuBar.add(topMenu);
@@ -253,6 +269,7 @@ public class GUI extends JFrame {
     private JMenuBar topMenuBar;
     private JMenuItem topMenuExitProgram;
     private JMenuItem topMenuLoadNewStory;
+    private JMenuItem topMenuAbout;
     private JMenu topMenuRecentlyUsed;
     private JMenuItem topMenuRecentlyUsed0;
     private JMenuItem topMenuRecentlyUsed1;
