@@ -69,23 +69,23 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
             switch (choice) {
                 case 0:
                     firstOptionButton.setEnabled(false);
-                    firstOptionButton.setText("<html>First option</html>");
+                    firstOptionButton.setText("");
                     secondOptionButton.setEnabled(false);
-                    secondOptionButton.setText("<html>Second option</html>");
+                    secondOptionButton.setText("");
                     thirdOptionButton.setEnabled(false);
-                    thirdOptionButton.setText("<html>Third option</html>");
+                    thirdOptionButton.setText("");
                     fourthOptionButton.setEnabled(false);
-                    fourthOptionButton.setText("<html>Fourth option</html>");
+                    fourthOptionButton.setText("");
                     JOptionPane.showMessageDialog(mainFrame, "Congratulations you made it.", "Game over", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 case 1:
                     firstOptionButton.setText("<html>"+ choices[0].getText() +"</html>");
                     firstOptionButton.setEnabled(true);
-                    secondOptionButton.setText("<html>Second option</html>");
+                    secondOptionButton.setText("");
                     secondOptionButton.setEnabled(false);
-                    thirdOptionButton.setText("<html>Third option</html>");
+                    thirdOptionButton.setText("");
                     thirdOptionButton.setEnabled(false);
-                    fourthOptionButton.setText("<html>Fourth option</html>");
+                    fourthOptionButton.setText("");
                     fourthOptionButton.setEnabled(false);
                     TextGame.firstOption = choices[0].getGoTo();
                     TextGame.secondOption = -1;
@@ -97,9 +97,9 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
                     firstOptionButton.setEnabled(true);
                     secondOptionButton.setText("<html>"+ choices[1].getText() +"</html>");
                     secondOptionButton.setEnabled(true);
-                    thirdOptionButton.setText("<html>Third option</html>");
+                    thirdOptionButton.setText("");
                     thirdOptionButton.setEnabled(false);
-                    fourthOptionButton.setText("<html>Fourth option</html>");
+                    fourthOptionButton.setText("");
                     fourthOptionButton.setEnabled(false);
                     TextGame.firstOption = choices[0].getGoTo();
                     TextGame.secondOption = choices[1].getGoTo();
@@ -113,7 +113,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
                     secondOptionButton.setEnabled(true);
                     thirdOptionButton.setText("<html>"+ choices[2].getText() +"</html>");
                     thirdOptionButton.setEnabled(true);
-                    fourthOptionButton.setText("<html>Fourth option</html>");
+                    fourthOptionButton.setText("");
                     fourthOptionButton.setEnabled(false);
                     TextGame.firstOption = choices[0].getGoTo();
                     TextGame.secondOption = choices[1].getGoTo();
