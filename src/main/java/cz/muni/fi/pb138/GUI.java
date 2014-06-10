@@ -9,10 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import javax.xml.xpath.XPathExpressionException;
 
 /**
  * 426 max.
@@ -21,15 +17,9 @@ import javax.xml.xpath.XPathExpressionException;
  */
 public class GUI extends JFrame {
 
-    private Map<Long,GameScene> scenes = new HashMap<>();
-    private long currentScene;
     private GUI mainFrame;
-    private File storyFile;
 
-    public GUI() throws IOException, StoryValidateException, XPathExpressionException {
-        StoryValidator validator = new StoryValidator("src/test/resources/ValidatorTestFiles/testXML.xml");
-        scenes = validator.validateGameStory();
-        currentScene = validator.getStartingScene();
+    public GUI() {
         initComponents();
         mainFrame = this;
     }
@@ -48,23 +38,25 @@ public class GUI extends JFrame {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.xml", "xml");
         chooser.setFileFilter(filter);
         if(chooser.showOpenDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
-            storyFile = chooser.getSelectedFile();
+            File storyFile = chooser.getSelectedFile();
             String[] temp = storyFile.getName().split("\\.");
             if (temp[temp.length - 1].equals("xml")) {
                 LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
                         firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, storyFile);
                 swingWorker.execute();
             } else {
-                storyFile = null;
                 JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
 
+    private void nextStepActionPerformed(ActionEvent e) {
+        NextStepSwingWorker swingWorker = new NextStepSwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
+                firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, ((JButton)e.getSource()).getName());
+        swingWorker.execute();
     }
 
     private void initComponents() {
-        
-        GameScene currentGameScane = scenes.get(currentScene);
 
         sceneNameLabel = new JLabel();
         actualSceneLabel = new JLabel();
@@ -93,58 +85,74 @@ public class GUI extends JFrame {
             }
         });
 
-        actualSceneLabel.setText(currentGameScane.getSceneDesc());
+        actualSceneLabel.setText(" Text of scene");
         actualSceneLabel.setVerticalAlignment(SwingConstants.TOP);
         actualSceneLabel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 
         firstOptionButton.setFont(new Font("Century", 0, 11));
         firstOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         firstOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
-        firstOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
-                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
-                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
-                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
-                "programming. As such, this paper will focus on the hierar</html>");
+        firstOptionButton.setEnabled(false);
+        firstOptionButton.setText("<html>First option</html>");
         firstOptionButton.setMargin(new Insets(2, 2, 2, 2));
         firstOptionButton.setVerticalAlignment(SwingConstants.TOP);
         firstOptionButton.setVerticalTextPosition(SwingConstants.TOP);
+        firstOptionButton.setName("first");
+        firstOptionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nextStepActionPerformed(e);
+            }
+        });
 
         secondOptionButton.setFont(new Font("Century", 0, 11));
-        secondOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
-                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
-                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
-                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
-                "programming. As such, this paper will focus on the hierar</html>");
+        secondOptionButton.setEnabled(false);
+        secondOptionButton.setText("<html>Second option</html>");
         secondOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         secondOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
         secondOptionButton.setIconTextGap(2);
         secondOptionButton.setMargin(new Insets(2, 2, 2, 2));
         secondOptionButton.setVerticalAlignment(SwingConstants.TOP);
         secondOptionButton.setVerticalTextPosition(SwingConstants.TOP);
+        secondOptionButton.setName("second");
+        secondOptionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nextStepActionPerformed(e);
+            }
+        });
 
         thirdOptionButton.setFont(new Font("Century", 0, 11));
         thirdOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         thirdOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
-        thirdOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
-                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
-                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
-                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
-                "programming. As such, this paper will focus on the hierar</html>");
+        thirdOptionButton.setEnabled(false);
+        thirdOptionButton.setText("<html>Third option</html>");
         thirdOptionButton.setMargin(new Insets(2, 2, 2, 2));
         thirdOptionButton.setVerticalAlignment(SwingConstants.TOP);
         thirdOptionButton.setVerticalTextPosition(SwingConstants.TOP);
+        thirdOptionButton.setName("third");
+        thirdOptionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nextStepActionPerformed(e);
+            }
+        });
 
         fourthOptionButton.setFont(new Font("Century", 0, 11));
         fourthOptionButton.setHorizontalAlignment(SwingConstants.LEFT);
         fourthOptionButton.setHorizontalTextPosition(SwingConstants.LEFT);
-        fourthOptionButton.setText("<html>This article is meant for the individual who has little or no experience in" +
-                " Java GUI programming. As such, this paper will focus on the hierar This article is meant for the " +
-                "individual who has little or no experience in Java GUI programming. As such, this paper will focus " +
-                "on the hierar This article is meant for the individual who has little or no experience in Java GUI " +
-                "programming. As such, this paper will focus on the hierar</html>");
+        fourthOptionButton.setEnabled(false);
+        fourthOptionButton.setText("<html>Fourth option</html>");
         fourthOptionButton.setMargin(new Insets(2, 2, 2, 2));
         fourthOptionButton.setVerticalAlignment(SwingConstants.TOP);
         fourthOptionButton.setVerticalTextPosition(SwingConstants.TOP);
+        fourthOptionButton.setName("fourth");
+        fourthOptionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nextStepActionPerformed(e);
+            }
+        });
 
         sceneNameLabel.setFont(new Font("Century", 0, 24));
         sceneNameLabel.setText("Name of the scene");

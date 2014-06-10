@@ -1,17 +1,15 @@
 package cz.muni.fi.pb138;
 
 import javax.swing.*;
-import java.io.File;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * @author Martin Zaťko
- * @version 9.6.2014
+ * @version 10.6.2014
  */
-public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void> {
+public class NextStepSwingWorker extends SwingWorker<Void, Void> {
 
     private JFrame mainFrame;
     private JLabel sceneNameLabel;
@@ -20,15 +18,14 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
     private JButton secondOptionButton;
     private JButton thirdOptionButton;
     private JButton fourthOptionButton;
-    private File storyFile;
-    private long startingScene;
     private Choice[] choices;
     private int choice;
+    private String button;
     private GameScene scene;
 
-    public LoadStorySwingWorker(JFrame mainFrame, JLabel sceneNameLabel, JLabel actualSceneLabel,
-                                JButton firstOptionButton, JButton secondOptionButton, JButton thirdOptionButton,
-                                JButton fourthOptionButton, File storyFile) {
+    public NextStepSwingWorker(JFrame mainFrame, JLabel sceneNameLabel, JLabel actualSceneLabel,
+                               JButton firstOptionButton, JButton secondOptionButton, JButton thirdOptionButton,
+                               JButton fourthOptionButton, String button) {
         this.mainFrame = mainFrame;
         this.sceneNameLabel = sceneNameLabel;
         this.actualSceneLabel = actualSceneLabel;
@@ -36,31 +33,43 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
         this.secondOptionButton = secondOptionButton;
         this.thirdOptionButton = thirdOptionButton;
         this.fourthOptionButton = fourthOptionButton;
-        this.storyFile = storyFile;
+        this.button = button;
     }
 
     @Override
-    protected Map<Long, GameScene> doInBackground() throws Exception {
-        XmlValidator xmlValidator = new XmlValidator();
-        xmlValidator.validateGameXml(storyFile.getPath());
-
-        StoryValidator storyValidator = new StoryValidator(storyFile.getPath());
-        startingScene = storyValidator.getStartingScene();
-        Map<Long, GameScene> scenes = storyValidator.validateGameStory();
-
-        scene = scenes.get(startingScene);
+    protected Void doInBackground() throws Exception {
+        switch (button) {
+            case "first":
+                scene = TextGame.scenes.get(TextGame.firstOption);
+                break;
+            case "second":
+                scene = TextGame.scenes.get(TextGame.secondOption);
+                break;
+            case "third":
+                scene = TextGame.scenes.get(TextGame.thirdOption);
+                break;
+            case "fourth":
+                scene = TextGame.scenes.get(TextGame.fourthOption);
+                break;
+            default:
+                scene = null;
+                break;
+        }
         choice = scene.getChoicesCount();
         choices = new Choice[choice];
         for (int i = 0; i < choice; i++) {
             choices[i] = scene.getChoice(i);
         }
-        return scenes;
+        return null;
     }
 
     @Override
     protected void done() {
         try {
-            TextGame.scenes = get();
+            get();
+            if (scene == null) {
+                JOptionPane.showMessageDialog(mainFrame, "There are some serious errors in code.", "FATAL ERROR", JOptionPane.ERROR_MESSAGE);
+            }
             sceneNameLabel.setText(scene.getSceneName());
             actualSceneLabel.setText(" "+ scene.getSceneDesc());
             switch (choice) {
@@ -92,7 +101,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
                 case 2:
                     firstOptionButton.setText("<html>"+ choices[0].getText() +"</html>");
                     firstOptionButton.setEnabled(true);
-                    secondOptionButton.setText("<html>"+ choices[1].getText() +"</html>");
+                    secondOptionButton.setText("<html>" + choices[1].getText() + "</html>");
                     secondOptionButton.setEnabled(true);
                     thirdOptionButton.setText("<html>Third option</html>");
                     thirdOptionButton.setEnabled(false);
@@ -106,9 +115,9 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
                 case 3:
                     firstOptionButton.setText("<html>"+ choices[0].getText() +"</html>");
                     firstOptionButton.setEnabled(true);
-                    secondOptionButton.setText("<html>"+ choices[1].getText() +"</html>");
+                    secondOptionButton.setText("<html>" + choices[1].getText() + "</html>");
                     secondOptionButton.setEnabled(true);
-                    thirdOptionButton.setText("<html>"+ choices[2].getText() +"</html>");
+                    thirdOptionButton.setText("<html>" + choices[2].getText() + "</html>");
                     thirdOptionButton.setEnabled(true);
                     fourthOptionButton.setText("<html>Fourth option</html>");
                     fourthOptionButton.setEnabled(false);
@@ -132,7 +141,6 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
                     TextGame.fourthOption = choices[3].getGoTo();
                     break;
             }
-            JOptionPane.showMessageDialog(mainFrame, "Story was successfully loaded.", "Story loaded.", JOptionPane.INFORMATION_MESSAGE);
         } catch (InterruptedException e) {
             JOptionPane.showMessageDialog(mainFrame, "Something interrupted process while loading story. Check logger for further information.", "Failed to load story.", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(LoadStorySwingWorker.class.getName()).log(Level.SEVERE, null, e);
