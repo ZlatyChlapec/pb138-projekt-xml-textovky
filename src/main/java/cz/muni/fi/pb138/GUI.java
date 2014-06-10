@@ -32,6 +32,12 @@ public class GUI extends JFrame {
         }
     }
 
+    private void loadOurStoryActionPerformed(ActionEvent e) {
+        LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
+                firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, new File("scenario/Testovaci_hra1.xml"));
+        swingWorker.execute();
+    }
+
     private void loadNewStoryActionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Select file with story.");
@@ -72,6 +78,7 @@ public class GUI extends JFrame {
         topMenuBar = new JMenuBar();
         topMenu = new JMenu();
         topMenuExitProgram = new JMenuItem();
+        topMenuOurStory = new JMenuItem();
         topMenuLoadNewStory = new JMenuItem();
         topMenuAbout = new JMenuItem();
         topMenuRecentlyUsed = new JMenu();
@@ -166,6 +173,15 @@ public class GUI extends JFrame {
         topMenu.setText("File");
         topMenu.setFont(new Font("Century", 0, 12));
 
+        topMenuOurStory.setFont(new Font("Century", 0, 12));
+        topMenuOurStory.setText("Load our story");
+        topMenuOurStory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadOurStoryActionPerformed(e);
+            }
+        });
+
         topMenuLoadNewStory.setFont(new Font("Century", 0, 12));
         topMenuLoadNewStory.setText("Load new story");
         topMenuLoadNewStory.addActionListener(new ActionListener() {
@@ -213,6 +229,7 @@ public class GUI extends JFrame {
             }
         });
 
+        topMenu.add(topMenuOurStory);
         topMenu.add(topMenuLoadNewStory);
         topMenu.add(topMenuRecentlyUsed);
         topMenu.add(topMenuAbout);
@@ -269,6 +286,7 @@ public class GUI extends JFrame {
     private JMenuBar topMenuBar;
     private JMenuItem topMenuExitProgram;
     private JMenuItem topMenuLoadNewStory;
+    private JMenuItem topMenuOurStory;
     private JMenuItem topMenuAbout;
     private JMenu topMenuRecentlyUsed;
     private JMenuItem topMenuRecentlyUsed0;

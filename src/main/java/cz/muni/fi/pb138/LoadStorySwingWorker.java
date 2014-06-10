@@ -65,7 +65,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
             TextGame.scenes = get();
             mainFrame.setTitle(gameName);
             sceneNameLabel.setText(scene.getSceneName());
-            actualSceneLabel.setText(" "+ scene.getSceneDesc());
+            actualSceneLabel.setText("<html>"+ scene.getSceneDesc() +"</html>");
             switch (choice) {
                 case 0:
                     firstOptionButton.setEnabled(false);
