@@ -71,7 +71,7 @@ public class NextStepSwingWorker extends SwingWorker<Void, Void> {
                 JOptionPane.showMessageDialog(mainFrame, "There are some serious errors in code.", "FATAL ERROR", JOptionPane.ERROR_MESSAGE);
             }
             sceneNameLabel.setText(scene.getSceneName());
-            actualSceneLabel.setText(" "+ scene.getSceneDesc());
+            actualSceneLabel.setText("<html>"+ scene.getSceneDesc() +"</html>");
             switch (choice) {
                 case 0:
                     firstOptionButton.setEnabled(false);
