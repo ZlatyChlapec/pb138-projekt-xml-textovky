@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 426 max.
@@ -63,8 +66,12 @@ public class GUI extends JFrame {
     }
 
     private void aboutActionPerformed(ActionEvent e) {
-        GUIAbout guiAbout = new GUIAbout();
-        guiAbout.setVisible(true);
+        try {
+            File manual = new File("Manual.html");
+            Desktop.getDesktop().browse(manual.toURI());
+        } catch (IOException e1) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     private void initComponents() {
