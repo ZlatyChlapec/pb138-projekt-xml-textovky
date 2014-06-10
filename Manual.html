@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Manuál pro tvorbu textových her s nástrojem Textovky</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
         <li><a href="#chocies">Značka &lt;choices&gt;</a></li>
         <li><a href="#chocie">Značka &lt;choice&gt;</a></li>
         <li><a href="#text">Značka &lt;text&gt;</a></li>
-     </ul>
+    </ul>
     <br>
     <h2><a id="uvod">Schéma</a></h2>
     <p>Základem scénářů je příběh, uložený ve formátu xml, který je možné po vytvoření načíst do ovládacího programu a odehrát.</p>
@@ -46,7 +46,7 @@
             </ul>
         &lt;<a href="#game">/game</a>&gt;
         </li>
-</ul>
+    </ul>
     <br>
     <p>Každá hra musí obsahovat minimálně dvě scény, z nichž jedna musí být počáteční. Tu určuje atribut startingScene u první značky hry.</p>
     <p>Hra se skládá z jednotlivých scén, mezi kterými je možné přecházet prostřednictvím voleb. Z toho důvodu musí každá scéna mít definované své ID, které slouží jako informace pro navigaci.</p>
@@ -111,21 +111,23 @@
     <a id="choice"><h3>Značka &lt;choice&gt;</h3></a>
     <i>
         Nadřazená značka: <a href="#choices">&lt;choices&gt;</a><br>
-        Formát obsahu: Text<br>
+        Formát obsahu: &lt;text&gt; (právě jednou)<br>
         Má atributy: #goTo
         Příklad zápisu: &lt;choice&gt;<br>
     </i>
     <p><b>Párová značka. Musí být uzavřena odpovídající značkou &lt;/choice&gt;</b></p>
     <p>Značka se používá pro jednotlivé volby, které může uživatel udělat v rámci scény. Má atributy <b><i>goTo</i></b> a <b><i>points</i></b>.<br>
-    Atribut <b><i>goTo</i></b> slouží pro nastavení identifikace scény, která se zobrazí po vybrání dané volby. Jeho hodnota musí být shodná s id některé existující scény.<br>
+    Atribut <b><i>goTo</i></b> slouží pro nastavení identifikace scény, která se zobrazí po vybrání dané volby. Jeho hodnota musí být shodná s id některé existující scény.</p><br>
     <br>
     <a id="text"><h3>Značka &lt;text&gt;</h3></a>
     <i>
         Nadřazená značka: <a href="#choice">&lt;choice&gt;</a><br>
         Formát obsahu: Text<br>
-        Příklad zápisu: &lt;text&gt;Vysmeknout se vlkovi.&lt;/text&gt;<br>
+        Příklad zápisu: &lt;text&gt;Toto je text volby.&lt;/text&gt;<br>
     </i>
     <p><b>Párová značka. Musí být uzavřena odpovídající značkou &lt;/text&gt;</b></p>
-    <p>Označuje text, který se zobrazí hráči</p>
+    <p>Mezi tuto dvojici značek se dává text, který se poté hráči zobrazí jako volba, kterou si může vybrat.</p>
+
+
 </body>
 </html>
