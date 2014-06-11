@@ -135,7 +135,7 @@ public class LoadStorySwingWorker extends SwingWorker<Map<Long, GameScene>, Void
                     TextGame.fourthOption = choices[3].getGoTo();
                     break;
             }
-            JOptionPane.showMessageDialog(mainFrame, "Story was successfully loaded.", "Story loaded.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(mainFrame, "Story was successfully loaded.", "Story loaded", JOptionPane.INFORMATION_MESSAGE);
         } catch (InterruptedException e) {
             JOptionPane.showMessageDialog(mainFrame, "Something interrupted process while loading story. Check logger for further information.", "Failed to load story.", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(LoadStorySwingWorker.class.getName()).log(Level.SEVERE, null, e);
