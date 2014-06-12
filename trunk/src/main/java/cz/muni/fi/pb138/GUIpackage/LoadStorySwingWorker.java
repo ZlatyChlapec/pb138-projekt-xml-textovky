@@ -1,5 +1,10 @@
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.GUIpackage;
 
+import cz.muni.fi.pb138.Choice;
+import cz.muni.fi.pb138.GameScene;
+import cz.muni.fi.pb138.validators.StoryValidator;
+import cz.muni.fi.pb138.TextGame;
+import cz.muni.fi.pb138.validators.XmlValidator;
 import javax.swing.*;
 import java.io.File;
 import java.util.Map;

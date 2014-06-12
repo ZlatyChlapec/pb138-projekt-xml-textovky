@@ -1,4 +1,4 @@
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.GUIpackage;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

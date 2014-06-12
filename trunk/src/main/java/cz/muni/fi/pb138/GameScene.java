@@ -9,7 +9,8 @@ import java.util.List;
 
 /**
  *
- * @author Filip
+ * @author Filip Sonta
+ * @version 1.0
  */
 public class GameScene {
     private long id;

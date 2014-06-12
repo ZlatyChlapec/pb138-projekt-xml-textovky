@@ -2,8 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.validators;
 
+import cz.muni.fi.pb138.GameScene;
+import cz.muni.fi.pb138.exceptions.StoryValidateException;
+import cz.muni.fi.pb138.TextGame;
+import cz.muni.fi.pb138.validators.SceneParser;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -25,7 +29,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filip
+ * @author Filip Sonta
+ * @version 1.0
  */
 public class StoryValidator {
     private Document doc;
@@ -49,6 +54,15 @@ public class StoryValidator {
         } 
     }
     
+    /**
+     * Checks if game story is valid.
+     * 
+     * Checks validity of scene and its choices. For each choice calls itself. 
+     * 
+     * @param id                        id of scene which is being validated
+     * @throws StoryValidateException   if scene with id does not exist
+     * @throws StoryValidateException   if choice reffers same scene as it is at
+     */
     public void checkScene(long id) throws StoryValidateException {
         if (game.containsKey(id) == false) {
             throw new StoryValidateException("Choice reffering non-existent scene.");
@@ -66,6 +80,12 @@ public class StoryValidator {
         }
     }
     
+    /**
+     * Returns id of starting scene of the game.
+     * 
+     * @return                          number value of starting scene of the game
+     * @throws XPathExpressionException if xPath is evaluated with error
+     */
     public long getStartingScene() throws XPathExpressionException {
         double startDouble;
         String xPathId = "/game/@startingScene";
@@ -73,6 +93,11 @@ public class StoryValidator {
         return (long) startDouble;
     }
     
+    /**
+     * Returns name of the game.
+     * 
+     * @return string value of game name
+     */
     public String getGameName() {
         try {
             String xPathGameName = "/game/@name";
@@ -84,6 +109,16 @@ public class StoryValidator {
         return null;
     }
     
+    /**
+     * Validates story of the game.
+     * 
+     * Uses {@link #parser} to parse all scenes and save them. Then uses {@link #checkScene(long)}
+     * to validate story from starting scene and finishes validation.
+     * 
+     * @return                          Map type of all scenes, key is their id
+     * @throws StoryValidateException   if game has no final scene
+     * @throws StoryValidateException   if game has unused scenes
+     */
     public Map<Long, GameScene> validateGameStory() throws StoryValidateException {
         try {
             String xPathId = "count(//scene)";
