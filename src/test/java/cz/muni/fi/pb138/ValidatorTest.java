@@ -1,5 +1,7 @@
 package cz.muni.fi.pb138;
 
+import cz.muni.fi.pb138.exceptions.SchemaValidateException;
+import cz.muni.fi.pb138.validators.XmlValidator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

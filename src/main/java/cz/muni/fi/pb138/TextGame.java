@@ -1,5 +1,6 @@
 package cz.muni.fi.pb138;
 
+import cz.muni.fi.pb138.GUIpackage.GUI;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;

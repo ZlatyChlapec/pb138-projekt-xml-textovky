@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.validators;
 
+import cz.muni.fi.pb138.exceptions.SchemaValidateException;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Filip Sonta
- * @version 18.5.2014
+ * @version 1.0
  */
 public class XmlValidator {
     private DocumentBuilder docBuilder;
@@ -45,7 +46,17 @@ public class XmlValidator {
             throw new SAXException(exception.getMessage());
         }
     }
-
+    
+    /**
+     * Validates XML file.
+     * 
+     * Validates XML file in order to XMLSchema which is specified for the game.
+     * 
+     * @param xmlName                   path to the XML file
+     * @throws IOException              if parsing the file result in error
+     * @throws SchemaValidateException  if {@link SAXException} occurs
+     * @throws SchemaValidateException  if {@link ParserConfigurationException} occurs
+     */
     public void validateGameXml(String xmlName) throws IOException, SchemaValidateException {
         try {
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

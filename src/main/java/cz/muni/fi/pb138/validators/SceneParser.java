@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.validators;
 
+import cz.muni.fi.pb138.Choice;
+import cz.muni.fi.pb138.GameScene;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -23,7 +25,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filip
+ * @author Filip Sonta
+ * @version 1.0
  */
 public class SceneParser {
     private static Document doc;
@@ -41,6 +44,14 @@ public class SceneParser {
         doc = builder.parse(uri.toString());
     }
     
+    /**
+     * Parsing method.
+     * 
+     * Parsing data of one scene from XML document into object of {@link GameScene}.
+     * 
+     * @param id    id of scene which is being parsed
+     * @return      object with type GameScene
+     */
     public GameScene parseScene(long id) {
         String xPathScene; 
         Node node;
