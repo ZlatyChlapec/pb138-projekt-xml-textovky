@@ -1,4 +1,4 @@
-#summary Tím.
+#summary Popis tímu a odkazy na záverečné správy.
 
 = Rozdelenie úloh =
 
