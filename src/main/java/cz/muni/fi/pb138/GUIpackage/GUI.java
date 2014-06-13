@@ -1,5 +1,7 @@
 package cz.muni.fi.pb138.GUIpackage;
 
+import cz.muni.fi.pb138.TextGame;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -14,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 426 max.
+ * All of gui that is used in program.
+ *
  * @author Martin Zaťko
  * @version 15.5.2014
  */
@@ -27,7 +30,10 @@ public class GUI extends JFrame {
         mainFrame = this;
     }
 
-    private void exitActionPerformed(AWTEvent e) {
+    /**
+     * Respond to closing of program and close it properly.
+     */
+    private void exitActionPerformed() {
         int result = JOptionPane.showConfirmDialog(mainFrame, "Are you sure? All your progress will be lost.",
                 "Exit confrimation", JOptionPane.YES_NO_OPTION);
         if (result == 0) {
@@ -35,45 +41,154 @@ public class GUI extends JFrame {
         }
     }
 
-    private void loadOurStoryActionPerformed(ActionEvent e) {
-        LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
-                firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, new File("scenario/Testovaci_hra1.xml"));
-        swingWorker.execute();
-    }
-
-    private void loadNewStoryActionPerformed(ActionEvent e) {
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("Select file with story.");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.xml", "xml");
-        chooser.setFileFilter(filter);
-        if(chooser.showOpenDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
-            File storyFile = chooser.getSelectedFile();
+    /**
+     * Load any story to program.
+     */
+    private void loadNewStoryActionPerformed(File storyFile) {
+        boolean isChooser = false;
+        if (storyFile == null) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Select file with story.");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.xml", "xml");
+            chooser.setFileFilter(filter);
+            if(chooser.showOpenDialog(mainFrame) == JFileChooser.APPROVE_OPTION) {
+                storyFile = chooser.getSelectedFile();
+                isChooser = true;
+            }
+        }
+        if (!isChooser && storyFile != null || isChooser) {
             String[] temp = storyFile.getName().split("\\.");
             if (temp[temp.length - 1].equals("xml")) {
-                LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
-                        firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, storyFile);
+                LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, storyFile);
                 swingWorker.execute();
+                boolean working = true;
+                while (working) {
+                    if(swingWorker.isDone()) {
+                        updateGUI(true);
+                        working = false;
+                    }
+                }
             } else {
                 JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
+    /**
+     * Make step through story.
+     *
+     * @param e Details about button that was used.
+     */
     private void nextStepActionPerformed(ActionEvent e) {
-        NextStepSwingWorker swingWorker = new NextStepSwingWorker(mainFrame, sceneNameLabel, actualSceneLabel,
-                firstOptionButton, secondOptionButton, thirdOptionButton, fourthOptionButton, ((JButton)e.getSource()).getName());
+        NextStepSwingWorker swingWorker = new NextStepSwingWorker(mainFrame, ((JButton)e.getSource()).getName());
         swingWorker.execute();
+        boolean working = true;
+        while (working) {
+            if(swingWorker.isDone()) {
+                updateGUI(false);
+                working = false;
+            }
+        }
     }
 
-    private void aboutActionPerformed(ActionEvent e) {
+    /**
+     * Open default web browser with manual.
+     */
+    private void aboutActionPerformed() {
         try {
             File manual = new File("Manual.html");
             Desktop.getDesktop().browse(manual.toURI());
-        } catch (IOException e1) {
+        } catch (IOException e) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
+    /**
+     * Update GUI of program with new texts.
+     *
+     * @param newStory If story is loaded first tame set true.
+     */
+    private void updateGUI(boolean newStory) {
+        sceneNameLabel.setText(TextGame.gameScene.getSceneName());
+        actualSceneLabel.setText("<html>"+ TextGame.gameScene.getSceneDesc() +"</html>");
+        switch (TextGame.choices.length) {
+            case 0:
+                firstOptionButton.setEnabled(false);
+                firstOptionButton.setText("");
+                secondOptionButton.setEnabled(false);
+                secondOptionButton.setText("");
+                thirdOptionButton.setEnabled(false);
+                thirdOptionButton.setText("");
+                fourthOptionButton.setEnabled(false);
+                fourthOptionButton.setText("");
+                JOptionPane.showMessageDialog(mainFrame, "Congratulations you you made it to the final.", "Game over", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 1:
+                firstOptionButton.setText("<html>"+ TextGame.choices[0].getText() +"</html>");
+                firstOptionButton.setEnabled(true);
+                secondOptionButton.setText("");
+                secondOptionButton.setEnabled(false);
+                thirdOptionButton.setText("");
+                thirdOptionButton.setEnabled(false);
+                fourthOptionButton.setText("");
+                fourthOptionButton.setEnabled(false);
+                TextGame.firstOption = TextGame.choices[0].getGoTo();
+                TextGame.secondOption = -1;
+                TextGame.thirdOption = -1;
+                TextGame.fourthOption = -1;
+                break;
+            case 2:
+                firstOptionButton.setText("<html>"+ TextGame.choices[0].getText() +"</html>");
+                firstOptionButton.setEnabled(true);
+                secondOptionButton.setText("<html>"+ TextGame.choices[1].getText() +"</html>");
+                secondOptionButton.setEnabled(true);
+                thirdOptionButton.setText("");
+                thirdOptionButton.setEnabled(false);
+                fourthOptionButton.setText("");
+                fourthOptionButton.setEnabled(false);
+                TextGame.firstOption = TextGame.choices[0].getGoTo();
+                TextGame.secondOption = TextGame.choices[1].getGoTo();
+                TextGame.thirdOption = -1;
+                TextGame.fourthOption = -1;
+                break;
+            case 3:
+                firstOptionButton.setText("<html>"+ TextGame.choices[0].getText() +"</html>");
+                firstOptionButton.setEnabled(true);
+                secondOptionButton.setText("<html>"+ TextGame.choices[1].getText() +"</html>");
+                secondOptionButton.setEnabled(true);
+                thirdOptionButton.setText("<html>"+ TextGame.choices[2].getText() +"</html>");
+                thirdOptionButton.setEnabled(true);
+                fourthOptionButton.setText("");
+                fourthOptionButton.setEnabled(false);
+                TextGame.firstOption = TextGame.choices[0].getGoTo();
+                TextGame.secondOption = TextGame.choices[1].getGoTo();
+                TextGame.thirdOption = TextGame.choices[2].getGoTo();
+                TextGame.fourthOption = -1;
+                break;
+            case 4:
+                firstOptionButton.setText("<html>"+ TextGame.choices[0].getText() +"</html>");
+                firstOptionButton.setEnabled(true);
+                secondOptionButton.setText("<html>"+ TextGame.choices[1].getText() +"</html>");
+                secondOptionButton.setEnabled(true);
+                thirdOptionButton.setText("<html>"+ TextGame.choices[2].getText() +"</html>");
+                thirdOptionButton.setEnabled(true);
+                fourthOptionButton.setText("<html>"+ TextGame.choices[3].getText() +"</html>");
+                fourthOptionButton.setEnabled(true);
+                TextGame.firstOption = TextGame.choices[0].getGoTo();
+                TextGame.secondOption = TextGame.choices[1].getGoTo();
+                TextGame.thirdOption = TextGame.choices[2].getGoTo();
+                TextGame.fourthOption = TextGame.choices[3].getGoTo();
+                break;
+        }
+        if (newStory) {
+            mainFrame.setTitle(TextGame.gameName);
+            JOptionPane.showMessageDialog(mainFrame, "Story was successfully loaded.", "Story loaded", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    /**
+     * Initialize all GUI components.
+     */
     private void initComponents() {
 
         sceneNameLabel = new JLabel();
@@ -101,7 +216,7 @@ public class GUI extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent we) {
-                exitActionPerformed(we);
+                exitActionPerformed();
             }
         });
 
@@ -185,7 +300,7 @@ public class GUI extends JFrame {
         topMenuOurStory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadOurStoryActionPerformed(e);
+                loadNewStoryActionPerformed(new File("scenario/Testovaci_hra1.xml"));
             }
         });
 
@@ -194,7 +309,7 @@ public class GUI extends JFrame {
         topMenuLoadNewStory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadNewStoryActionPerformed(e);
+                loadNewStoryActionPerformed(null);
             }
         });
 
@@ -223,7 +338,7 @@ public class GUI extends JFrame {
         topMenuAbout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                aboutActionPerformed(e);
+                aboutActionPerformed();
             }
         });
 
@@ -232,7 +347,7 @@ public class GUI extends JFrame {
         topMenuExitProgram.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exitActionPerformed(e);
+                exitActionPerformed();
             }
         });
 
