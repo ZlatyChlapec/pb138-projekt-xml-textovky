@@ -13,8 +13,11 @@ and open the template in the editor.
             This is first scene of the testing XML game.
         </description>
         <choices>
-            <choice goTo="2">
+            <choice goTo="1">
                 <text>First choice.</text>
+            </choice>
+            <choice goTo="2">
+                <text>Second choice.</text>
             </choice>
         </choices>
     </scene>
@@ -45,13 +48,6 @@ and open the template in the editor.
     </scene>
     <scene id="4">
         <name>Fourth scene</name>
-        <description>
-            Final scene.
-        </description>
-        <choices/>
-    </scene>
-    <scene id="5">
-        <name>Fifth scene</name>
         <description>
             Final scene.
         </description>
