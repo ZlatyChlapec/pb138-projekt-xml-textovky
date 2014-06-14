@@ -28,7 +28,7 @@ and open the template in the editor.
                 <text>First choice.</text>
             </choice>
             <choice goTo="3">
-                <text>First choice.</text>
+                <text>Second choice.</text>
             </choice>
         </choices>
     </scene>

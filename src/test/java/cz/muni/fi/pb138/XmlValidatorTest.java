@@ -2,7 +2,6 @@ package cz.muni.fi.pb138;
 
 import cz.muni.fi.pb138.exceptions.SchemaValidateException;
 import cz.muni.fi.pb138.validators.XmlValidator;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,34 +10,43 @@ import java.io.IOException;
 import static org.junit.Assert.fail;
 
 /**
+ * Testing of XMLSchema
+ *
  * @author Stefan Malcek - 422715
  *         created on June 3, 2014
  */
-public class ValidatorTest {
+public class XmlValidatorTest {
     private XmlValidator validator;
-    private final String PATH = "src/test/resources/ValidatorTestFiles/";
+    private final String PATH = "src/test/resources/XmlValidatorTestFiles/";
 
+    /**
+     * Setup of validator.
+     * Sets up validator before each test.
+     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         validator = new XmlValidator();
     }
 
-    @After
-    public void tearDown() {
-    }
-
-    //correct xml files
+    /**
+     * Tests xml file.
+     * File correctXml.xml is valid.
+     */
     @Test
     public void correctXml() {
         try {
-            validator.validateGameXml(PATH + "testXML.xml");
+            validator.validateGameXml(PATH + "correctXML.xml");
         } catch (IOException ioe) {
-            fail("IOError - textXML.xml: " + ioe.getMessage());
+            fail("IOError - correctXML.xml: " + ioe.getMessage());
         } catch (SchemaValidateException ex) {
-            fail("Fail - testXML.xml should be correct: " + ex.getMessage());
+            fail("Fail - correctXML.xml should be correct: " + ex.getMessage());
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptySceneDescription.xml is valid.
+     */
     @Test
     public void emptySceneDescription() {
         try {
@@ -50,6 +58,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptySceneChoices is valid.
+     */
     @Test
     public void emptySceneChoices() {
         try {
@@ -61,7 +73,10 @@ public class ValidatorTest {
         }
     }
 
-    //incorrect xml files
+    /**
+     * Tests xml file.
+     * File duplicitSceneId.xml is invalid.
+     */
     @Test
     public void duplicitSceneId() {
         try {
@@ -73,6 +88,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File wrongRootName.xml is invalid.
+     */
     @Test
     public void wrongRootName() {
         try {
@@ -84,6 +103,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingGameName.xml is invalid.
+     */
     @Test
     public void missingGameName() {
         try {
@@ -95,6 +118,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptyGameName.xml is invalid.
+     */
     @Test
     public void emptyGameName() {
         try {
@@ -106,6 +133,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingGameStartingScene.xml.
+     */
     @Test
     public void missingGameStartingScene() {
         try {
@@ -117,6 +148,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptyGameStartingScene.xml is invalid.
+     */
     @Test
     public void emptyGameStartingScene() {
         try {
@@ -128,6 +163,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File negativeGameStartingScene.xml is invalid.
+     */
     @Test
     public void negativeGameStartingScene() {
         try {
@@ -139,6 +178,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File stringGameStartingScene.xml is invalid.
+     */
     @Test
     public void stringGameStartingScene() {
         try {
@@ -150,6 +193,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File oneScene.xml is invalid.
+     */
     @Test
     public void oneScene() {
         try {
@@ -161,6 +208,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingSceneId.xml is invalid.
+     */
     @Test
     public void missingSceneId() {
         try {
@@ -172,6 +223,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptySceneId.xml is invalid.
+     */
     @Test
     public void emptySceneId() {
         try {
@@ -183,6 +238,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File negativeSceneId.xml is invalid.
+     */
     @Test
     public void negativeSceneId() {
         try {
@@ -194,6 +253,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File stringSceneId.xml is invalid.
+     */
     @Test
     public void stringSceneId() {
         try {
@@ -205,6 +268,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingSceneName.xml is invalid.
+     */
     @Test
     public void missingSceneName() {
         try {
@@ -216,6 +283,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptySceneName.xml is invalid.
+     */
     @Test
     public void emptySceneName() {
         try {
@@ -227,6 +298,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingSceneDescription.xml is invalid.
+     */
     @Test
     public void missingSceneDescription() {
         try {
@@ -238,6 +313,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingSceneChoices.xml is invalid.
+     */
     @Test
     public void missingSceneChoices() {
         try {
@@ -249,6 +328,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File tooMuchSceneChoices.xml is invalid.
+     */
     @Test
     public void tooMuchSceneChoices() {
         try {
@@ -260,6 +343,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingChoiceText.xml is invalid.
+     */
     @Test
     public void missingChoiceText() {
         try {
@@ -271,6 +358,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptyChoiceText.xml is invalid.
+     */
     @Test
     public void emptyChoiceText() {
         try {
@@ -282,6 +373,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File duplicitChoiceText.xml is invalid.
+     */
     @Test
     public void duplicitChoiceText() {
         try {
@@ -293,6 +388,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File missingChoiceGoTo.xml is invalid.
+     */
     @Test
     public void missingChoiceGoTo() {
         try {
@@ -304,6 +403,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File emptyChoiceGoTo.xml is invalid.
+     */
     @Test
     public void emptyChoiceGoTo() {
         try {
@@ -315,6 +418,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File negativeChoiceGoTo.xml is invalid.
+     */
     @Test
     public void negativeChoiceGoTo() {
         try {
@@ -326,6 +433,10 @@ public class ValidatorTest {
         }
     }
 
+    /**
+     * Tests xml file.
+     * File stringChoiceGoTo.xml is invalid.
+     */
     @Test
     public void stringChoiceGoTo() {
         try {
@@ -335,5 +446,5 @@ public class ValidatorTest {
             fail("IOError - stringChoiceGoTo.xml: " + ioe.getMessage());
         } catch (SchemaValidateException ignored) {
         }
-    }    
+    }
 }
