@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<game name="Púť rytiera Dobromila" startingScene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="textGameXmlSchema.xsd">
+    <scene id="1">
+        <name>Návrat</name>
+        <description>
+            ... za piatimi dolami a štyridsiatimi šiestimi horami, kde sa voda 
+            nevyskytovala a piesok levitoval, existovalo bohaté a prosperujúce 
+            kráľovstvo, z ktorého pochádzaš. Ty si čestný, dobrevyzerajúci princ
+            so sexy ofinou a so zmyslom vždy sa zachovať spravodlivo a nikdy sa 
+            nemýliť. Vraciaš sa z ďalekého sveta Mozambiku, kde si bol pestovať 
+            bambusy, ale keď prídeš na hranice kráľovstva, zistíš, že už nič nie 
+            je ako pred tým.
+        </description>
+        <choices>
+            <choice goTo="2">
+                <text>Ďalej.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="2">
+        <name>Hlboké rozhodnutie</name>
+        <description>
+            ... krajinu ovláda temný čarodej Voldemort, dvojmetrová sto 
+            osemdesiat kilová ozruta s mastnými vlasami a okusanými ušami do
+            špičata. Tvoja rodina je väznená v zariadení s prísnou ostrahou - 
+            Leopoldove. 
+        </description>
+        <choices>
+            <choice goTo="999">
+                <text>Pôjdeš do susedného kráľovstva na pivo.</text>
+            </choice>
+            <choice goTo="3">
+                <text>Zavoláš Gandalfovi.</text>
+            </choice>
+            <choice goTo="4">
+                <text>Pôjdeš oslobodiť svoju rodinu a získať kráľovstvo späť.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Nebudeš to riešiť.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="3">
+        <name>Zvonííí</name>
+        <description>
+            Snažíš sa dovolať Gandalfovi, ale tomu asi zase zablokovali 
+            simku alebo sa niekde fláka s mladými elfkami.
+        </description>
+        <choices>
+            <choice goTo="2">
+                <text>Znovu sa rozhodnúť.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="4">
+        <name>Rázcestie</name>
+        <description>
+            ... prichádzaš na rázcestie. Jedna cesta vedie do Leopoldova, kde je 
+            väznená tvoja rodina, druhá do hradu Castle Black, kde sídli čarodej 
+            Voldemort a tretia do hostinca s ľahkými nemravnými ženami. Pôjdeš
+        </description>
+        <choices>
+            <choice goTo="7">
+                <text>zachrániť rodinu.</text>
+            </choice>
+            <choice goTo="5">
+                <text>zahynúť Voldemorta.</text>
+            </choice>
+            <choice goTo="999">
+                <text>vyhodiť si z kopýtka.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="5">
+        <name>Hrad Castle Black</name>
+        <description>
+            ...vstúpiš do hradu, potichu sa zakrádaš, aby ťa nik neuvidel alebo
+            nepočul, a keď uvidíš Voldemorta
+        </description>
+        <choices>
+            <choice goTo="6">
+                <text>bezhlavo zaútočíš.</text>
+            </choice>
+            <choice goTo="4">
+                <text>vrátiš sa.</text>
+            </choice>
+            <choice goTo="999">
+                <text>vrátiš sa pestovať bambusy do Mozambiku.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="6">
+        <name>Hrad Castle Black</name>
+        <description>
+            ... tvoj útok nebol vôbec premyslený a čarodej ťa so smiechom vyhodil 
+            von oknom do priekopy.
+        </description>
+        <choices>
+            <choice goTo="5">
+                <text>Vstúpiť do hradu znovu.</text>
+            </choice>
+            <choice goTo="4">
+                <text>Vrátiť sa.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="7">
+        <name>Cesta do Leopoldova</name>
+        <description>
+            ... putuješ cez polia a lúky, hory a doly, keď v tom uvidíš v diaľke 
+            dvoch ľudí.
+        </description>
+        <choices>
+            <choice goTo="10">
+                <text>Vyhneš sa im.</text>
+            </choice>
+            <choice goTo="8">
+                <text>Prídeš bližšie.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="8">
+        <name>Krava</name>
+        <description>
+            ... zbadáš, že sa hádajú o kravu. Ako prichádzaš bližšie spoznajú 
+            ťa. Pretože si vždy spravodlivý, máš zistiť komu krava patrí a druhého
+            potrestať, lenže obaja tvrdia vlastnú pravdu.
+        </description>
+        <choices>
+            <choice goTo="999">
+                <text>Dáš kravu prvému a druhého potrestáš.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Dáš kravu druhému a prvého potrestáš.</text>
+            </choice>
+            <choice goTo="9">
+                <text>Rozsekneš kravu na polky.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="9">
+        <name>Rozseknutie kravy.</name>
+        <description>
+            ... hodíš ofinou a ideš sa rozohnať mečom a v tom ťa zastaví druhý. 
+            Ty sa rozhodneš mu podarovať kravu a prvému dáš päť a dvadsať na ...
+        </description>
+        <choices>
+            <choice goTo="10">
+                <text>Pokračovať ďalej.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="10">
+        <name>Leopoldov</name>
+        <description>
+            ... vstupuješ do väzenia, ktoré vyzerá byť pusté. Ako hľadáš svojich
+            blízkych počujes v ďialke kroky a nemáš veľa času na rozhodovanie. 
+        </description>
+        <choices>
+            <choice goTo="11">
+                <text>Vytiahneš meč.</text>
+            </choice>
+            <choice goTo="12">
+                <text>Ukryješ sa.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="12">
+        <name>Leopoldov</name>
+        <description>
+            ... lenže niet miesta, kam by sa dalo ukryť.
+        </description>
+        <choices>
+            <choice goTo="11">
+                <text>Vytiahneš meč.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="11">
+        <name>Súboj</name>
+        <description>
+            Pevne stiskneš meč, a keď ťa neprieteľ zbadá, rozbehne sa strmhlav 
+            na teba, lenže zakopne o nejaký papek a upadne do bezvedomia. 
+            Prehľadáš ho a nájdeš kľúč od nejakej zámky.
+        </description>
+        <choices>
+            <choice goTo="14">
+                <text>Ďalej.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="14">
+        <name>Oslobodenie</name>
+        <description>
+            Nájdeš svoju milovanú rodinu, oslobodíš ju, pokecáte a dozvieš sa, že
+            čarodej vládne temnou silou a dá sa jedine poraziť čarami svetla. 
+            Povedali ti ešte, že v bažinách žije starý majster svetla.
+        </description>
+        <choices>
+            <choice goTo="17">
+                <text>Pojdeš ho nájsť a požiadať o pomoc.</text>
+            </choice>
+            <choice goTo="15">
+                <text>Nebudeš ich počúvať a pojdeš nájsť Voldemorta.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="15">
+        <name>Hrad Castle Black</name>
+        <description>
+            ...vstúpiš do hradu, potichu sa zakrádaš, aby ťa nik neuvidel alebo
+            nepočul, a keď uvidíš Voldemorta
+        </description>
+        <choices>
+            <choice goTo="16">
+                <text>bezhlavo zaútočíš.</text>
+            </choice>
+            <choice goTo="17">
+                <text>rozhodneš sa ísť do bažín.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="16">
+        <name>Hrad Castle Black</name>
+        <description>
+            ... tvoj útok nebol vôbec premyslený a čarodej ťa so smiechom vyhodil 
+            von oknom do priekopy.
+        </description>
+        <choices>
+            <choice goTo="15">
+                <text>Vstúpiš opäť do hradu.</text>
+            </choice>
+            <choice goTo="17">
+                <text>Pôjdeš do bažín.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="17">
+        <name>Bažiny</name>
+        <description>
+            ... všade samý hmyz a ty už strácaš nervy, keď v tom zbadáš malého
+            zeleného holohlavého škriatka, ktorý vyzerá trošku podivne. Mal na 
+            sebe šiltovku a tepláky. Osloví ťa: ,,Majster Yoda meno moje je. Čo 
+            tu hľadáš ? Mladý padavan.´´
+        </description>
+        <choices>
+            <choice goTo="18">
+                <text>Prišiel som ťa poprosiť, aby si ma zasvätil do tajomstva svetelnej sily.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Hľadám vzácny druh motýľa, nazýva sa hadodrak. </text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="18">
+        <name>Bažiny</name>
+        <description>
+            ,,Cesta neľahká to teda pre teba bude. Tromi skúškami ty prejsť musíš.´´
+        </description>
+        <choices>
+            <choice goTo="19">
+                <text>Som pripravený.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Rozmyslel som si to, idem radšej na pivo.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="19">
+        <name>Tréning</name>
+        <description>
+            ,,Dobre teda. Aby použiť silu svetla si ty mohol, ovládať základy 
+            z fyziky musíš ty. Rýchlosť svetla povedať mi ty musíš.´´
+        </description>
+        <choices>
+            <choice goTo="999">
+                <text>1cm/h</text>
+            </choice>
+            <choice goTo="20">
+                <text>300 000km/s</text>
+            </choice>
+            <choice goTo="999">
+                <text>5kg/m^2</text>
+            </choice>
+            <choice goTo="999">
+                <text>99999999999999uV</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="20">
+        <name>Tréning</name>
+        <description>
+            ,,Cez prvý test prešiel ty si. Druhá úloha: Silu absorbovať 
+            zo svetelných zdrojov vedieť musíš. Najväčším zdrojom svetla
+            cez deň je: ´´
+        </description>
+        <choices>
+            <choice goTo="999">
+                <text>Halogenická výbojka.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Žiarivka.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Svetluška.</text>
+            </choice>
+            <choice goTo="21">
+                <text>Slnko.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="21">
+        <name>Tréning</name>
+        <description>
+            ,,Cez druhý test aj ty si prešiel. Posledná úloha: Svetlo vieme
+            aplikovať už aj počítačovej grafike. Integer  RGB zložky
+            farby bielej ty mi povedať musíš: ´´
+        </description>
+        <choices>
+            <choice goTo="999">
+                <text>6.4f, 9.7f, 0.2f</text>
+            </choice>
+            <choice goTo="22">
+                <text>1, 1, 1</text>
+            </choice>
+            <choice goTo="999">
+                <text>0.5f, 0.5f, 0.5f</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="22">
+        <name>Požehnanie</name>
+        <description>
+            ,,Úlohy všetky splnil ty si. Pamätaj, mocnú silu takúto len v 
+            prospech dobra použiť ty môžeš. Nech ťa sila a svetlo sprevádza.´´
+        </description>
+        <choices>
+            <choice goTo="23">
+                <text>Ísť do Castle Blacku zahynúť Voldemorta.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="23">
+        <name>Castle Black</name>
+        <description>
+            S odhodlaním hľadáš temného čarodejníka, aby si ho na veky vekov 
+            poslal voňat fialky od spodu, keď v tom ho uvidíš.
+        </description>
+        <choices>
+            <choice goTo="24">
+                <text>Zaútočíš bezhlavo.</text>
+            </choice>
+            <choice goTo="25">
+                <text>Požiješ svetelnú mágiu.</text>
+            </choice>
+            <choice goTo="999">
+                <text>Ujdeš.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="24">
+        <name>Hrad Castle Black</name>
+        <description>
+            ... tvoj útok nebol vôbec premyslený a čarodej ťa so smiechom vyhodil 
+            von oknom do priekopy.
+        </description>
+        <choices>
+            <choice goTo="23">
+                <text>Vkročiť opäť do hradu.</text>
+            </choice>
+        </choices>
+    </scene>
+    <scene id="25">
+        <name>Vyhral si</name>
+        <description>
+            Čarodejník podcenil tvoje schopnosti a zahynul rýchlo. Ostal po ňom
+            iba špatný vzduch. Obnovil si slávu a bohactvo svojho kráľovstva,
+            všetci boli štastní až do smrti a usporiadal si veľkú párty ako 
+            oslavu nad skončením tyranie. END
+        </description>
+        <choices/>
+    </scene>
+    <scene id="999">
+        <name>Prehral si.</name>
+        <description>
+            Sklamal si. Zachoval si sa inakšie ako ti vravia tvoje zásady.
+            Tvoja rodina trpela v ukrutných bolestiach, rozhodol si sa nesprávne.
+        </description>
+        <choices/>
+    </scene>
+</game>
