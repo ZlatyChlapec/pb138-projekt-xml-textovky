@@ -7,8 +7,9 @@ import cz.muni.fi.pb138.validators.StoryValidator;
 import cz.muni.fi.pb138.validators.XmlValidator;
 
 import javax.swing.*;
-import java.io.File;
+import java.io.*;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,37 @@ public class LoadStorySwingWorker extends SwingWorker<Void, Void> {
         startingScene = storyValidator.getStartingScene();
         Map<Long, GameScene> scenes = storyValidator.validateGameStory();
 
+        boolean needStore = true;
+        InputStream input = new FileInputStream("src/main/resources/config.properties");
+        Properties prop = new Properties();
+        prop.load(input);
+        input.close();
+
+        if (prop.getProperty("recentlyUsed0").equals("...") && needStore) {
+            prop.setProperty("recentlyUsed0", storyFile.getAbsolutePath());
+            needStore = false;
+        }
+        if (prop.getProperty("recentlyUsed1").equals("...") && needStore) {
+            prop.setProperty("recentlyUsed1", storyFile.getAbsolutePath());
+            needStore = false;
+        }
+        if (prop.getProperty("recentlyUsed2").equals("...") && needStore) {
+            prop.setProperty("recentlyUsed2", storyFile.getAbsolutePath());
+            needStore = false;
+        }
+        if (prop.getProperty("recentlyUsed3").equals("...") && needStore) {
+            prop.setProperty("recentlyUsed3", storyFile.getAbsolutePath());
+            needStore = false;
+        }
+        if (needStore) {
+            prop.setProperty("recentlyUsed3", prop.getProperty("recentlyUsed2"));
+            prop.setProperty("recentlyUsed2", prop.getProperty("recentlyUsed1"));
+            prop.setProperty("recentlyUsed1", prop.getProperty("recentlyUsed0"));
+            prop.setProperty("recentlyUsed0", storyFile.getAbsolutePath());
+        }
+
+        prop.store(new FileOutputStream("src/main/resources/config.properties"), null);
+
         gameName = storyValidator.getGameName();
         scene = scenes.get(startingScene);
         choice = scene.getChoicesCount();
@@ -60,6 +92,10 @@ public class LoadStorySwingWorker extends SwingWorker<Void, Void> {
         TextGame.choices = choices;
         TextGame.gameName = gameName;
         TextGame.gameScene = scene;
+        TextGame.firstRecent = prop.getProperty("recentlyUsed0");
+        TextGame.secondRecent = prop.getProperty("recentlyUsed1");
+        TextGame.thirdRecent = prop.getProperty("recentlyUsed2");
+        TextGame.fourthRecent = prop.getProperty("recentlyUsed3");
         return null;
     }
 
