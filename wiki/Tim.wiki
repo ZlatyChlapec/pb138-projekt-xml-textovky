@@ -2,7 +2,7 @@
 
 = Rozdelenie úloh =
 
-  * Štefan Malček - unit testing, tvorba wiki stránok
+  * Štefan Malček - unit testing, tvorba scenára
   * František Sedláček - vytvorenie hry a in-game manuálu, návrh XML Scheme, tvorba wiki stránok
   * Filip Sonta - parsovanie XML do objektového modelu, validácia XML
   * Martin Zaťko - tvorba a nastavenia GUI
