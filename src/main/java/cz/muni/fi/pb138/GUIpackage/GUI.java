@@ -12,6 +12,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,19 +58,27 @@ public class GUI extends JFrame {
             }
         }
         if (!isChooser && storyFile != null || isChooser) {
-            String[] temp = storyFile.getName().split("\\.");
-            if (temp[temp.length - 1].equals("xml")) {
-                LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, storyFile);
-                swingWorker.execute();
-                boolean working = true;
-                while (working) {
-                    if(swingWorker.isDone()) {
-                        updateGUI(true);
-                        working = false;
-                    }
-                }
+            if (!storyFile.exists()) {
+                JOptionPane.showMessageDialog(mainFrame, "File no longer exist.", "Not existing file", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
+                String[] temp = storyFile.getName().split("\\.");
+                if (temp[temp.length - 1].equals("xml")) {
+                    LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, storyFile);
+                    swingWorker.execute();
+                    boolean working = true;
+                    while (working) {
+                        if(swingWorker.isDone()) {
+                            updateGUI(true);
+                            working = false;
+                            topMenuRecentlyUsed0.setText(TextGame.firstRecent);
+                            topMenuRecentlyUsed1.setText(TextGame.secondRecent);
+                            topMenuRecentlyUsed2.setText(TextGame.thirdRecent);
+                            topMenuRecentlyUsed3.setText(TextGame.fourthRecent);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
@@ -96,8 +105,9 @@ public class GUI extends JFrame {
      */
     private void aboutActionPerformed() {
         try {
-            File manual = new File("Manual.html");
-            Desktop.getDesktop().browse(manual.toURI());
+            Desktop.getDesktop().browse(this.getClass().getClassLoader().getResource("manual.html").toURI());
+        } catch (URISyntaxException e) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, e);
         } catch (IOException e) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -300,7 +310,7 @@ public class GUI extends JFrame {
         topMenuOurStory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadNewStoryActionPerformed(new File("scenario/Testovaci_hra1.xml"));
+                loadNewStoryActionPerformed(new File("src/main/resources/scenarios/hra1.xml"));
             }
         });
 
@@ -317,16 +327,40 @@ public class GUI extends JFrame {
         topMenuRecentlyUsed.setText("Recently used stories");
 
         topMenuRecentlyUsed0.setFont(new Font("Century", 0, 12));
-        topMenuRecentlyUsed0.setText("latest");
+        topMenuRecentlyUsed0.setText(TextGame.firstRecent);
+        topMenuRecentlyUsed0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadNewStoryActionPerformed(new File(TextGame.firstRecent));
+            }
+        });
 
         topMenuRecentlyUsed1.setFont(new Font("Century", 0, 12));
-        topMenuRecentlyUsed1.setText("2nd latest");
+        topMenuRecentlyUsed1.setText(TextGame.secondRecent);
+        topMenuRecentlyUsed1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadNewStoryActionPerformed(new File(TextGame.secondRecent));
+            }
+        });
 
         topMenuRecentlyUsed2.setFont(new Font("Century", 0, 12));
-        topMenuRecentlyUsed2.setText("3nd latest");
+        topMenuRecentlyUsed2.setText(TextGame.thirdRecent);
+        topMenuRecentlyUsed3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadNewStoryActionPerformed(new File(TextGame.thirdRecent));
+            }
+        });
 
         topMenuRecentlyUsed3.setFont(new Font("Century", 0, 12));
-        topMenuRecentlyUsed3.setText("oldest");
+        topMenuRecentlyUsed3.setText(TextGame.fourthRecent);
+        topMenuRecentlyUsed3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadNewStoryActionPerformed(new File(TextGame.fourthRecent));
+            }
+        });
 
         topMenuRecentlyUsed.add(topMenuRecentlyUsed0);
         topMenuRecentlyUsed.add(topMenuRecentlyUsed1);
