@@ -20,5 +20,5 @@
 
   * Štefan Malček 
   * František Sedláček
-  * Filip Sonta [https://drive.google.com/?tab=mo&authuser=0#folders/0B808_PKaB0PcTDhvOU1ZZGtCUUU .xml] [https://drive.google.com/?tab=mo&authuser=0#folders/0B808_PKaB0PcTDhvOU1ZZGtCUUU .html]
+  * Filip Sonta [http://www.fi.muni.cz/~xsonta/PB138/sonta_sprava.xml .xml] [http://www.fi.muni.cz/~xsonta/PB138/sonta_sprava.html .html]
   * Martin Zaťko
