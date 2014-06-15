@@ -5,7 +5,7 @@ and open the template in the editor.
 -->
 
 
-<game name="Púť rytiera Dobromila" startingScene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<game name="Púť princa Dobromila" startingScene="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="textGameXmlSchema.xsd">
     <scene id="1">
         <name>Návrat</name>
