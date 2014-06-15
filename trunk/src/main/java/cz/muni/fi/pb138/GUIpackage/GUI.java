@@ -210,7 +210,9 @@ public class GUI extends JFrame {
         topMenuBar = new JMenuBar();
         topMenu = new JMenu();
         topMenuExitProgram = new JMenuItem();
-        topMenuOurStory = new JMenuItem();
+        topMenuOurStory = new JMenu();
+        topMenuOurStory0 = new JMenuItem();
+        topMenuOurStory1 = new JMenuItem();
         topMenuLoadNewStory = new JMenuItem();
         topMenuAbout = new JMenuItem();
         topMenuRecentlyUsed = new JMenu();
@@ -306,13 +308,28 @@ public class GUI extends JFrame {
         topMenu.setFont(new Font("Century", 0, 12));
 
         topMenuOurStory.setFont(new Font("Century", 0, 12));
-        topMenuOurStory.setText("Load our story");
-        topMenuOurStory.addActionListener(new ActionListener() {
+        topMenuOurStory.setText("Load prearranged story");
+
+        topMenuOurStory0.setFont(new Font("Century", 0, 12));
+        topMenuOurStory0.setText("Test story");
+        topMenuOurStory0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadNewStoryActionPerformed(new File("src/main/resources/scenarios/hra1.xml"));
             }
         });
+
+        topMenuOurStory1.setFont(new Font("Century", 0, 12));
+        topMenuOurStory1.setText("Púť princa Dobromila");
+        topMenuOurStory1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadNewStoryActionPerformed(new File("src/main/resources/scenarios/hra2.xml"));
+            }
+        });
+
+        topMenuOurStory.add(topMenuOurStory0);
+        topMenuOurStory.add(topMenuOurStory1);
 
         topMenuLoadNewStory.setFont(new Font("Century", 0, 12));
         topMenuLoadNewStory.setText("Load new story");
@@ -442,7 +459,9 @@ public class GUI extends JFrame {
     private JMenuBar topMenuBar;
     private JMenuItem topMenuExitProgram;
     private JMenuItem topMenuLoadNewStory;
-    private JMenuItem topMenuOurStory;
+    private JMenu topMenuOurStory;
+    private JMenuItem topMenuOurStory0;
+    private JMenuItem topMenuOurStory1;
     private JMenuItem topMenuAbout;
     private JMenu topMenuRecentlyUsed;
     private JMenuItem topMenuRecentlyUsed0;
