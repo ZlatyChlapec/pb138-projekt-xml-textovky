@@ -131,7 +131,7 @@ public class GUI extends JFrame {
                 thirdOptionButton.setText("");
                 fourthOptionButton.setEnabled(false);
                 fourthOptionButton.setText("");
-                JOptionPane.showMessageDialog(mainFrame, "Congratulations you you made it to the final.", "Game over", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "You have reached the end of current story.", "Game over", JOptionPane.INFORMATION_MESSAGE);
                 break;
             case 1:
                 firstOptionButton.setText("<html>"+ TextGame.choices[0].getText() +"</html>");
