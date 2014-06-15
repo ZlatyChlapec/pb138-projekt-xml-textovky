@@ -18,7 +18,7 @@
 
 = Odkazy na záverečné správy členov tímu =
 
-  * Štefan Malček 
+  * Štefan Malček [http://www.fi.muni.cz/~xmalcek1/PB138/sprava.xml .xml] [http://www.fi.muni.cz/~xmalcek1/PB138/sprava.html .html]
   * František Sedláček
   * Filip Sonta [http://www.fi.muni.cz/~xsonta/PB138/sonta_sprava.xml .xml] [http://www.fi.muni.cz/~xsonta/PB138/sonta_sprava.html .html]
   * Martin Zaťko
