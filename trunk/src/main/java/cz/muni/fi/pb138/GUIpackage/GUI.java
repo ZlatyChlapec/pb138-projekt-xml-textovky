@@ -346,7 +346,7 @@ public class GUI extends JFrame {
 
         topMenuRecentlyUsed2.setFont(new Font("Century", 0, 12));
         topMenuRecentlyUsed2.setText(TextGame.thirdRecent);
-        topMenuRecentlyUsed3.addActionListener(new ActionListener() {
+        topMenuRecentlyUsed2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadNewStoryActionPerformed(new File(TextGame.thirdRecent));
