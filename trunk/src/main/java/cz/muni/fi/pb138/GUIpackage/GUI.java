@@ -57,9 +57,9 @@ public class GUI extends JFrame {
             }
         }
         if (!isChooser && storyFile != null || isChooser) {
-//            if (!storyFile.exists()) {
-//                JOptionPane.showMessageDialog(mainFrame, "File no longer exist.", "Not existing file", JOptionPane.ERROR_MESSAGE);
-//            } else {
+            if (!storyFile.exists()) {
+                JOptionPane.showMessageDialog(mainFrame, "File no longer exist.", "Not existing file", JOptionPane.ERROR_MESSAGE);
+            } else {
                 String[] temp = storyFile.getName().split("\\.");
                 if (temp[temp.length - 1].equals("xml")) {
                     LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, storyFile);
@@ -78,7 +78,7 @@ public class GUI extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
                 }
-//            }
+            }
         }
     }
 
