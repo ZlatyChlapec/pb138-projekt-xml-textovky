@@ -13,4 +13,5 @@ Cílem úkolu by pak byl vznik nejen samotného parseru na procházení herních
 
 = JavaDoc =
 
+
 [https://mega.co.nz/#!h8hyXQxD!aPj1dz80a1pEUWyKeC4CGr1tvelEAKxeqLeUt8K_5So JavaDoc.zip]
