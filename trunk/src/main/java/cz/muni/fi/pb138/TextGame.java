@@ -37,7 +37,7 @@ public class TextGame {
 
     public static void main(String...args) {
 
-        try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
+        try (InputStream input = new FileInputStream("config.properties")) {
             Properties prop = new Properties();
             prop.load(input);
             firstRecent = prop.getProperty("recentlyUsed0");
