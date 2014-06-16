@@ -51,7 +51,7 @@ public class LoadStorySwingWorker extends SwingWorker<Void, Void> {
         Map<Long, GameScene> scenes = storyValidator.validateGameStory();
 
         boolean needStore = true;
-        InputStream input = new FileInputStream("src/main/resources/config.properties");
+        InputStream input = new FileInputStream("config.properties");
         Properties prop = new Properties();
         prop.load(input);
         input.close();
@@ -79,7 +79,7 @@ public class LoadStorySwingWorker extends SwingWorker<Void, Void> {
             prop.setProperty("recentlyUsed0", storyFile.getAbsolutePath());
         }
 
-        prop.store(new FileOutputStream("src/main/resources/config.properties"), null);
+        prop.store(new FileOutputStream("config.properties"), null);
 
         gameName = storyValidator.getGameName();
         scene = scenes.get(startingScene);
@@ -109,9 +109,11 @@ public class LoadStorySwingWorker extends SwingWorker<Void, Void> {
         } catch (InterruptedException e) {
             JOptionPane.showMessageDialog(mainFrame, "Something interrupted process while loading story. Check logger for further information.", "Failed to load story.", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(LoadStorySwingWorker.class.getName()).log(Level.SEVERE, null, e);
+            e.printStackTrace();
         } catch (ExecutionException e) {
             JOptionPane.showMessageDialog(mainFrame, "Something went wrong while loading story. Check logger for further information.", "Failed to load story.", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(LoadStorySwingWorker.class.getName()).log(Level.SEVERE, null, e);
+            e.printStackTrace();
         }
     }
 }

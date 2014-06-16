@@ -12,7 +12,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,9 +57,9 @@ public class GUI extends JFrame {
             }
         }
         if (!isChooser && storyFile != null || isChooser) {
-            if (!storyFile.exists()) {
-                JOptionPane.showMessageDialog(mainFrame, "File no longer exist.", "Not existing file", JOptionPane.ERROR_MESSAGE);
-            } else {
+//            if (!storyFile.exists()) {
+//                JOptionPane.showMessageDialog(mainFrame, "File no longer exist.", "Not existing file", JOptionPane.ERROR_MESSAGE);
+//            } else {
                 String[] temp = storyFile.getName().split("\\.");
                 if (temp[temp.length - 1].equals("xml")) {
                     LoadStorySwingWorker swingWorker = new LoadStorySwingWorker(mainFrame, storyFile);
@@ -79,7 +78,7 @@ public class GUI extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(mainFrame, "I am very sorry but you have to select xml file.", "Wrong type of file", JOptionPane.ERROR_MESSAGE);
                 }
-            }
+//            }
         }
     }
 
@@ -105,9 +104,7 @@ public class GUI extends JFrame {
      */
     private void aboutActionPerformed() {
         try {
-            Desktop.getDesktop().browse(this.getClass().getClassLoader().getResource("manual.html").toURI());
-        } catch (URISyntaxException e) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, e);
+            Desktop.getDesktop().browse(new File("manual.html").toURI());
         } catch (IOException e) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -315,7 +312,7 @@ public class GUI extends JFrame {
         topMenuOurStory0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadNewStoryActionPerformed(new File("src/main/resources/scenarios/hra1.xml"));
+                loadNewStoryActionPerformed(new File("scenarios/hra1.xml"));
             }
         });
 
@@ -324,7 +321,7 @@ public class GUI extends JFrame {
         topMenuOurStory1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadNewStoryActionPerformed(new File("src/main/resources/scenarios/hra2.xml"));
+                loadNewStoryActionPerformed(new File("scenarios/hra2.xml"));
             }
         });
 

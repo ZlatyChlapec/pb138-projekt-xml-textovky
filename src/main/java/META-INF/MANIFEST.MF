@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: /cz/muni/fi/pb138/TextGame.java
+Main-Class: cz.muni.fi.pb138.TextGame
+
