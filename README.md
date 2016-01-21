@@ -37,6 +37,6 @@ Cílem úkolu by pak byl vznik nejen samotného parseru na procházení herních
   * Filip Sonta [.xml](http://www.fi.muni.cz/~xsonta/PB138/sonta_sprava.xml) [.html](http://www.fi.muni.cz/~xsonta/PB138/sonta_sprava.html)
   * Martin Zaťko [.xml](http://mober.net/PB138.sprava.xml) [.html](http://mober.net/PB138.sprava.html)
 
-  # Jak vytvořit vlastní scenáriá #
+# Jak vytvořit vlastní scenáře #
 
-  https://github.com/ZlatyChlapec/pb138-projekt-xml-textovky/wiki/How-to-create-new-scenarios
+  https://github.com/ZlatyChlapec/pb138-projekt-xml-textovky/wiki/Jak-vytvo%C5%99it-vlastn%C3%AD-scen%C3%A1%C5%99e
