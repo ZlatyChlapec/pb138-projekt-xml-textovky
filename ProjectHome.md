@@ -1,1 +1,0 @@
-Projekt do předmětu PB138 - Moderní značkovací jazyky a jejich aplikace (FI MUNI, Jaro 2014). Cílem projektu je vytvořit sadu XML značek a parser, který umožní hrát textové hry, zaznamenané pomocí dané značkovací sady.
